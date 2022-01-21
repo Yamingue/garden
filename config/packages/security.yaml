@@ -67,9 +67,10 @@ security:
                 # target: app_any_route
         api_parent_main:
             pattern: ^/api/parent/login
+            stateless: true
             provider: app_user_provider
             json_login:
-                check_path: api_parent_check
+                check_path: /api/parent/login
                 username_path: email
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -100,6 +101,7 @@ security:
          - { path: ^/gardienne/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/parent/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/api/parent/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/parent/check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/super, roles: ROLE_USER }
          - { path: ^/gardienne, roles: ROLE_USER }
          - { path: ^/parent, roles: ROLE_USER }
