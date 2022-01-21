@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{{ encore_entry_link_tags('garden') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('garden') }}
+{% endblock %}
+
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+<div id="garden" class="mt-2"></div>
+{% endblock %}

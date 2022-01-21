@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user }} | Home{% endblock %}
+{% block stylesheets %}
+{{ encore_entry_link_tags('super') }}
+{% endblock %}
+
+
+{% block javascripts %}
+{{ encore_entry_script_tags('super') }}
+{% endblock %}
+{% block nav %}
+    {% include "includes/super_nav.html.twig" %}
+{% endblock %}
+{% block body %}
+<div class="container mt-2">
+    <section>
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                <div class="card" data-mdb-toggle="modal" data-mdb-target="#superClass" style="cursor: pointer;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h3 class="text-danger">{{ app.user.salles |length }}</h3>
+                                <p class="mb-0">Salle de Class</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-city text-danger fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                <div class="card" data-mdb-toggle="modal" data-mdb-target="#superGardienne" style="cursor: pointer;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h3 class="text-success">{{ app.user.gardiennes |length }}</h3>
+                                <p class="mb-0">Gardiennes</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="far fa-user text-success fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                <div class="card" data-mdb-toggle="modal" data-mdb-target="#superEnfant" style="cursor: pointer;">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h3 class="text-info">
+                                    {{app.user.enfants|length}}
+                                </h3>
+                                <p class="mb-0">Enfants</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-baby text-info fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between px-md-1">
+                            <div>
+                                <h3 class="text-warning">10</h3>
+                                <p class="mb-0">Parent au parking</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-parking text-warning fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% include "includes/superCalss_modal.html.twig" %}
+{% include "includes/superGardienne_modal.html.twig" %}
+{% include "includes/superEnfant_modal.html.twig" %}
+<div id="super"></div>
+
+{% endblock %}

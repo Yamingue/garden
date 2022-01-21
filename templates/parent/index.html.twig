@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user }}{% endblock %}
+
+
+{% block css %}
+<style>
+    .p-enfant {
+        width: 80%;
+        max-width: 550px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #afafafa8;
+        border-radius: 25px;
+        margin: 10px;
+
+    }
+
+    .p-image {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    
+    <div class="row mt-2">
+        {% for i in app.user.enfants %}
+            
+        <div class="col-6 mb-2">
+            <div class="card  ">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="{{ asset(i.photo) }}" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{i.nom}}
+                    </h5>
+
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('parent_parking',{id:i.id}) }}" class="card-link">In parking</a>
+                    <a href="{{ path('parent_notifie',{id:i.id}) }}" class="card-link">Notifier</a>
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
