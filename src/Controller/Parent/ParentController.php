@@ -63,7 +63,7 @@ class ParentController extends AbstractController
         ]);
         $form = $formBuilder->getForm();
         $form->get('time')->setData($notification->getRestTime());
-        dump($notification);
+        //dump($notification);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             //creation d'une date de correspondante a celle de la soumisson du formulaire
