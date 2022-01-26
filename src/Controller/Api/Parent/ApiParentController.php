@@ -64,6 +64,7 @@ class ApiParentController extends AbstractController
         if (!$notification) {
             $notification = new Notification(); 
         }
+        
         $notification->setWaiting(false);
         $notification->setParent($this->getUser());
         $notification->setEnfant($enfant);
@@ -79,6 +80,7 @@ class ApiParentController extends AbstractController
             $notification->setTime($datetime);
             $this->manager->persist($notification);
             $this->manager->flush();
+           // dd($notification,$minute);
            return $this->json([
                'code'=>200,
                'message'=>'notifi succes'
