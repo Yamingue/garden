@@ -13,8 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 /**
- * @Route("/api/parent")
- * return les information du parent
+ *@Route("/api/parent")
  */
 class ApiParentController extends AbstractController
 {
@@ -27,8 +26,7 @@ class ApiParentController extends AbstractController
         $this->notificationRepository = $notif;
     }
     /**
-     * @Route("", name="api_parent", methods={"GET"})
-     * return les information du parent
+     *@Route("", name="api_parent", methods={"GET"})
      */
     public function index(): Response
     {
@@ -47,7 +45,7 @@ class ApiParentController extends AbstractController
         }]);
     }
     /**
-     * @Route("/notifie/{id}", name="notifi_child", methods={"POST"})
+     *@Route("/notif/{id}",  name="notif_child", methods={"post"},)
      */
     public function notifie(Enfant $enfant = null,Request $request)
     {
