@@ -113,4 +113,32 @@ class ApiParentController extends AbstractController
             return $object->getId();
         }]);
     }
+
+    /**
+     * @Route("/parking/{id}", name="notifi_child", methods={"GET"})
+     */
+    public function inParking(Enfant $enfant=null){
+        if (!$this->getUser()->getEnfants()->contains($enfant)) {
+            # code...
+            return $this->redirectToRoute('parent');
+        }
+        $notification = $this->notificationRepository->findParentToday($this->getUser(),$enfant);
+        if (!$notification) {
+           // $this->addFlash('error',"there is not notification for ".$enfant->getNom());
+            return $this->json([
+                'code'=>404,
+                'message'=>'there is not notification for select child'
+            ],404);
+           // return $this->redirectToRoute('parent');
+        }
+        $notification->setWaiting(true);
+        $this->manager->persist($notification);
+        $this->manager->flush();
+        $this->addFlash('success','Notifier');
+        return $this->json([
+            'code'=>200,
+            'message' =>'notifie',
+        ],200);
+       // dd($notification);
+    }
 }

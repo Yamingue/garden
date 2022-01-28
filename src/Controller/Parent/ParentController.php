@@ -106,6 +106,6 @@ class ParentController extends AbstractController
         $this->manager->flush();
         $this->addFlash('success','Notifier');
         return $this->redirectToRoute("parent");
-        dd($notification);
+        //dd($notification);
     }
 }
