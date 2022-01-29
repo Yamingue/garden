@@ -45,7 +45,7 @@ class ApiParentController extends AbstractController
         }]);
     }
     /**
-     *@Route("/notif/{id}",  name="notif_child", methods={"post"})
+     *@Route("/notif/{id}",  name="notif_child", methods={"POST"})
      */
     public function notifie(Enfant $enfant = null,Request $request)
     {
