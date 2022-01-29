@@ -45,7 +45,7 @@ class ApiParentController extends AbstractController
         }]);
     }
     /**
-     *@Route("/notif/{id}",  name="notif_child", methods={"POST"})
+     *@Route("/notif/{id}/",  name="notif", methods={"POST"})
      */
     public function notifie(Enfant $enfant = null,Request $request)
     {
@@ -96,7 +96,7 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/all_notif", name="notifi_all_child", methods={"GET"})
+     * @Route("/all_notif", name="notifi_all_child", methods={"POST"})
      */
     public function getAllTodayNotification()
     {
@@ -115,14 +115,14 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/parking/{id}", name="parking_child", methods={"GET"})
+     * @Route("/parking/{id}", name="inparking", methods={"GET"})
      */
     public function inParking(Enfant $enfant=null){
         if (!$this->getUser()->getEnfants()->contains($enfant)) {
             # code...
             return $this->json([
                 'code'=>404,
-                'message'=>'there is not notification for select child'
+                'message'=>'this childrenn is not yours'
             ],404);
         }
         $notification = $this->notificationRepository->findParentToday($this->getUser(),$enfant);
