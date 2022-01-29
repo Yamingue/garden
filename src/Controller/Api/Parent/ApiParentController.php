@@ -120,7 +120,10 @@ class ApiParentController extends AbstractController
     public function inParking(Enfant $enfant=null){
         if (!$this->getUser()->getEnfants()->contains($enfant)) {
             # code...
-            return $this->redirectToRoute('parent');
+            return $this->json([
+                'code'=>404,
+                'message'=>'there is not notification for select child'
+            ],404);
         }
         $notification = $this->notificationRepository->findParentToday($this->getUser(),$enfant);
         if (!$notification) {
