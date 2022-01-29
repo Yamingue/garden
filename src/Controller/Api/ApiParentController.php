@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Api\Parent;
+namespace App\Controller\Api;
 
 use App\Entity\Enfant;
 use App\Entity\Notification;
@@ -12,9 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-/**
- *@Route("/api/parent")
- */
 class ApiParentController extends AbstractController
 {
     private $manager;
@@ -26,7 +23,7 @@ class ApiParentController extends AbstractController
         $this->notificationRepository = $notif;
     }
     /**
-     *@Route("", name="api_parent", methods={"GET"})
+     *@Route("/api/parent/", name="api_parent", methods={"GET"})
      */
     public function index(): Response
     {
@@ -45,7 +42,7 @@ class ApiParentController extends AbstractController
         }]);
     }
     /**
-     *@Route("/notif/{id}/",  name="notif", methods={"POST"})
+     *@Route("/api/parent/notif/{id}/",  name="notif", methods={"POST"})
      */
     public function notifie(Enfant $enfant = null,Request $request)
     {
@@ -96,7 +93,7 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/all_notif", name="notifi_all_child", methods={"POST"})
+     * @Route("/api/parent/all_notif", name="notifi_all_child", methods={"POST"})
      */
     public function getAllTodayNotification()
     {
@@ -115,15 +112,22 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/parking/{id}", name="inparking", methods={"GET"})
+     * @Route("/api/parent/parking/{id}", name="inparking", methods={"GET"})
      */
     public function inParking(Enfant $enfant=null){
+        if ($enfant == null) {
+            # code...
+            return $this->json([
+                'code'=>404,
+                'message'=>'chil not selected'
+            ]);
+        }
         if (!$this->getUser()->getEnfants()->contains($enfant)) {
             # code...
             return $this->json([
                 'code'=>404,
                 'message'=>'this childrenn is not yours'
-            ],404);
+            ]);
         }
         $notification = $this->notificationRepository->findParentToday($this->getUser(),$enfant);
         if (!$notification) {
@@ -131,7 +135,7 @@ class ApiParentController extends AbstractController
             return $this->json([
                 'code'=>404,
                 'message'=>'there is not notification for select child'
-            ],404);
+            ]);
            // return $this->redirectToRoute('parent');
         }
         $notification->setWaiting(true);
