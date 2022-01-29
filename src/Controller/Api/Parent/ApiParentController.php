@@ -96,7 +96,7 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/all_notif", name="notifi_child", methods={"GET"})
+     * @Route("/all_notif", name="notifi_all_child", methods={"GET"})
      */
     public function getAllTodayNotification()
     {
@@ -115,7 +115,7 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/parking/{id}", name="notifi_child", methods={"GET"})
+     * @Route("/parking/{id}", name="parking_child", methods={"GET"})
      */
     public function inParking(Enfant $enfant=null){
         if (!$this->getUser()->getEnfants()->contains($enfant)) {
