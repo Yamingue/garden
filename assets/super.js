@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import reactDom from 'react-dom';
+import '@fortawesome/fontawesome-free/js/all.js'
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import 'mdb-ui-kit/js/mdb.min.js'
@@ -61,14 +62,13 @@ const Supervisor = (props) => {
                 <div className='col-md-8' >
                     <div className='card'>
                         <div className='card-header bg-dark text-white text-center'>
-                            <h5>On the way</h5>
                         </div>
                         <div className='card-body'>
                             <div className='row'>
-                                {data.map(el => <div className='col-sm-3 mb-2'>
+                                    {data.map(el => <div className='col-sm-3 mb-2'>
                                     <EnfantSignaler data={el} key={el.time} />
                                 </div>)}
-
+                                
                             </div>
                         </div>
                     </div>
@@ -86,14 +86,14 @@ const MainSuper = (props) => {
 const el = document.getElementById("super")
 const superParking = document.getElementById("superParking");
 const superWay = document.getElementById("superWay")
-if (superWay) {
+if(superWay){
     let OnWay = (props) => {
         return <QueryClientProvider client={queryClient}>
-            <div className='container'>
-                <div className='row'>
-                    <SuperWay />
-                </div>
+           <div className='container'>
+           <div className='row'>
+                <SuperWay />
             </div>
+           </div>
         </QueryClientProvider>
     }
     reactDom.render(<OnWay />, superWay)

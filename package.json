@@ -17,7 +17,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.4",
+        "@fortawesome/fontawesome-free": "^6.0.0",
         "@material/top-app-bar": "^13.0.0",
         "mdb-ui-kit": "^3.10.1",
         "prop-types": "^15.7.2",
