@@ -52,6 +52,7 @@ class ParentController extends AbstractController
         $notification->setEnfant($enfant);
         $notification->setEcole($enfant->getEcole());
         $notification->setSalle($enfant->getSalle());
+        $notification->setIsReady(false);
         //$form = $this->createForm(NotificationType::class,$notification);
         $formBuilder = $this->createFormBuilder();
         $formBuilder->add('time',IntegerType::class,[

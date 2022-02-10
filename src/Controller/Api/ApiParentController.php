@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+/**
+ *@Route("/api/parent")
+ */
 class ApiParentController extends AbstractController
 {
     private $manager;
@@ -24,7 +26,7 @@ class ApiParentController extends AbstractController
         $this->notificationRepository = $notif;
     }
     /**
-     *@Route("/api/parent/", name="api_parent", methods={"GET"})
+     *@Route("/", name="api_parent", methods={"GET"})
      */
     public function index(): Response
     {
@@ -46,7 +48,7 @@ class ApiParentController extends AbstractController
         }
        
         $user = [
-            'code' => 200,
+            'code' => 200, 
             'email' => $currentUser->getEmail(),
             'code_parent' => $currentUser->getCode(),
             'nom' => $currentUser->getNom(),
@@ -59,11 +61,12 @@ class ApiParentController extends AbstractController
         }]);
     }
     /**
-     *@Route("/api/parent/notif/{id}/",  name="notif", methods={"POST"})
+     *@Route("/notif/{id}/",  name="notif", methods={"POST"})
      */
     public function notifie(Enfant $enfant = null,Request $request)
     {
         $minute = json_decode($request->getContent(),true);
+        /**@var User */
         $user = $this->getUser();
         if ((!$user->getEnfants()->contains($enfant)) || $enfant==null) {
             # code...
@@ -84,6 +87,7 @@ class ApiParentController extends AbstractController
         $notification->setEnfant($enfant);
         $notification->setEcole($enfant->getEcole());
         $notification->setSalle($enfant->getSalle());
+        $notification->setIsReady(false);
         if (isset($minute['minute'])) {
             //creation d'une date de correspondante a celle de la soumisson du formulaire
             $datetime = new \DateTimeImmutable();
@@ -110,11 +114,13 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/api/parent/all_notif", name="notifi_all_child", methods={"POST"})
+     *@Route("/all_notif", name="notifi_all_child", methods={"POST"})
      */
     public function getAllTodayNotification()
     {
-        $enfants = $this->getUser()->getEnfants();
+        /**@var User */
+        $user = $this->getUser();
+        $enfants = $user->getEnfants();
         $notifications=[];
 
         foreach ($enfants as $enfant) {
@@ -129,7 +135,7 @@ class ApiParentController extends AbstractController
     }
 
     /**
-     * @Route("/api/parent/parking/{id}", name="inparking", methods={"GET"})
+     *@Route("/parking/{id}", name="inparking", methods={"GET"})
      */
     public function inParking(Enfant $enfant=null){
         if ($enfant == null) {
@@ -164,5 +170,21 @@ class ApiParentController extends AbstractController
             'message' =>'notifie',
         ],200);
        // dd($notification);
+    }
+    /**
+     *@Route("/isready/{id}")
+     */
+    public function childReady(Enfant $enfant)
+    {
+        /**@var User */
+        $currentUser = $this->getUser();
+        if ($currentUser->getEnfants()->contains($enfant)) {
+            $notification = $this->notificationRepository->findParentToday($this->getUser(),$enfant);
+            //dd($notification);
+            if ($notification!=null && !$notification->getClose()) {
+                return $this->json(['code'=>200,'ready'=>$notification->getIsReady()]);   
+            }
+        }
+        return $this->json(['code'=>404,'ready'=>false]);
     }
 }
