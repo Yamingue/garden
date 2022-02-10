@@ -2,6 +2,7 @@
 
 namespace App\Controller\Supervisor\Api;
 
+use App\Entity\Ecole;
 use App\Repository\NotificationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,8 +40,19 @@ class SuperApiController extends AbstractController
      */
     public function notification(): Response
     {
-       
-        return $this->json($this->getUser()->getNotifications(),200,[],['circular_reference_handler' => function ($object) {
+        /**@var Ecole */
+       $userSuper = $this->getUser();
+       $notifications = [];
+       foreach ( $userSuper->getNotifications() as $notif) {
+           # code...
+           $notif->setEcole(null);
+           $notif->setParent(null);
+           $notif->setSalle(null);
+           $notif->getEnfant()->setEcole(null);
+           $notif->getEnfant()->setSalle(null);
+           $notifications[] = $notif;
+       }
+        return $this->json($notifications,200,[],['circular_reference_handler' => function ($object) {
             return $object->getId();
          }]);
     }
@@ -51,8 +63,18 @@ class SuperApiController extends AbstractController
     public function onWay()
     {
         $ecole = $this->getUser();
+       $notifications = [];
+       foreach ($this->notificationRepository->findEcoleOnWay($ecole) as $notif) {
+           # code...
+           $notif->setEcole(null);
+           $notif->setParent(null);
+           $notif->setSalle(null);
+           $notif->getEnfant()->setEcole(null);
+           $notif->getEnfant()->setSalle(null);
+           $notifications[] = $notif;
+       }
 
-        return $this->json($this->notificationRepository->findEcoleOnWay($ecole),200,[],['circular_reference_handler' => function ($object) {
+        return $this->json($notifications,200,[],['circular_reference_handler' => function ($object) {
             return $object->getId();
          }]);
     }
@@ -62,8 +84,19 @@ class SuperApiController extends AbstractController
     public function parking()
     {
         $ecole = $this->getUser();
+        $notifications = [];
+        foreach ($this->notificationRepository->findSuperParking($ecole) as $notif) {
+            # code...
+            $notif->setEcole(null);
+            $notif->setParent(null);
+            $notif->setSalle(null);
+            $notif->getEnfant()->setEcole(null);
+            $notif->getEnfant()->setSalle(null);
+            $notifications[] = $notif;
+        }
+ 
 
-        return $this->json($this->notificationRepository->findSuperParking($ecole),200,[],['circular_reference_handler' => function ($object) {
+        return $this->json($notifications,200,[],['circular_reference_handler' => function ($object) {
             return $object->getId();
          }]);
     }

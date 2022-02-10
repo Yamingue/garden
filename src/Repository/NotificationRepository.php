@@ -87,7 +87,7 @@ class NotificationRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findEcoleOnWay(Ecole $ecole)
+    public function findEcoleOnWay(Ecole $ecole): ?array
     {
         $date = new DateTime();
         $time = $date->format("Y-m-d");
