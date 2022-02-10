@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\User;
 use App\Entity\Enfant;
 use App\Entity\Notification;
 use Doctrine\Persistence\ManagerRegistry;
@@ -27,7 +28,23 @@ class ApiParentController extends AbstractController
      */
     public function index(): Response
     {
+        /**@var User */
         $currentUser = $this->getUser();
+        $enfants =[];
+        foreach ($currentUser->getEnfants() as $e) {
+            # code...
+            $enfant =[
+                'id'=>$e->getId(),
+                'photo'=>$e->getPhoto(),
+                'nom'=>$e->getPrenom(),
+                'prenom'=>$e->getPrenom(),
+                'ecole'=>[
+                    'nom'=>$e->getEcole()->getName()
+                ]
+            ];
+            $enfants[] = $enfant;
+        }
+       
         $user = [
             'code' => 200,
             'email' => $currentUser->getEmail(),
@@ -35,7 +52,7 @@ class ApiParentController extends AbstractController
             'nom' => $currentUser->getNom(),
             'prenom' => $currentUser->getPrenom(),
             'telephone' => $currentUser->getTelephone(),
-            'enfants' => $currentUser->getEnfants()
+            'enfants' => $enfants
         ];
         return $this->json($user, 200, [], ['circular_reference_handler' => function ($object) {
             return $object->getId();
