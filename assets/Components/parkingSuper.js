@@ -32,7 +32,6 @@ if (isLoading) {
    
 
 if (error) return 'An error has occurred: ' + error.message
-console.log(data)
     return(<>
     {
         data.map(el=><EnfantAttente data={el} key={el.updateAt}/>)

@@ -47,6 +47,7 @@ class ParentController extends AbstractController
             $notification = new Notification(); 
         }
         $notification->setWaiting(false);
+        $notification->setClose(false);
         $notification->setParent($this->getUser());
         $notification->setEnfant($enfant);
         $notification->setEcole($enfant->getEcole());
@@ -102,6 +103,7 @@ class ParentController extends AbstractController
             return $this->redirectToRoute('parent');
         }
         $notification->setWaiting(true);
+        $notification->setClose(false);
         $this->manager->persist($notification);
         $this->manager->flush();
         $this->addFlash('success','Notifier');

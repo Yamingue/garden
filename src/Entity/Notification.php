@@ -69,6 +69,11 @@ class Notification
     private $close;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_ready;
+
+    /**
      * @ORM\PrePersist
      */
     public function setCreatedAtValue()
@@ -215,5 +220,17 @@ class Notification
        // dump($milliceCurrent,$millice);
         return $time;
        // $pass->time;
+    }
+
+    public function getIsReady(): ?bool
+    {
+        return $this->is_ready;
+    }
+
+    public function setIsReady(?bool $is_ready): self
+    {
+        $this->is_ready = $is_ready;
+
+        return $this;
     }
 }
