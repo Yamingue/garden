@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Api;
+namespace App\Controller\Api\Parent;
 
 use App\Entity\User;
 use App\Entity\Enfant;
