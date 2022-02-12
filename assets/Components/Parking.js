@@ -34,7 +34,7 @@ if (isLoading) {
 if (error) return 'An error has occurred: ' + error.message
     return(<>
     {
-        data.map(el=><EnfantAttente name='Yamingue' minute={15} key={el.updateAt}/>)
+        data.map(el=><EnfantAttente data={el} route='/gardienne/api/'/>)
     }
     </>);
 }

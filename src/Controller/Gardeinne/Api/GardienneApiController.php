@@ -2,7 +2,9 @@
 
 namespace App\Controller\Gardeinne\Api;
 
+use App\Entity\Gardienne;
 use App\Repository\NotificationRepository;
+use App\Service\SerializeNotification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,12 +24,11 @@ class GardienneApiController extends AbstractController
      */
     public function index(): Response
     {
+        /**@var Gardienne */
         $gardienne = $this->getUser();
         $salle = $gardienne->getSalles();
 
-        return $this->json($this->notificationRepository->findSalleOnWay($salle),200,[],['circular_reference_handler' => function ($object) {
-            return $object->getId();
-         }]);
+        return $this->json(SerializeNotification::collectionToArray($this->notificationRepository->findSalleOnWay($salle)));
     }
 
     /**
@@ -35,11 +36,10 @@ class GardienneApiController extends AbstractController
      */
     public function inparking(): Response
     {
+        /**@var Gardienne */
         $gardienne = $this->getUser();
         $salle = $gardienne->getSalles();
 
-        return $this->json($this->notificationRepository->findSalleParking($salle),200,[],['circular_reference_handler' => function ($object) {
-            return $object->getId();
-         }]);
+        return $this->json(SerializeNotification::collectionToArray($this->notificationRepository->findSalleParking($salle)));
     }
 }

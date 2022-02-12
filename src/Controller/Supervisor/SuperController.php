@@ -3,19 +3,20 @@
 namespace App\Controller\Supervisor;
 
 use App\Entity\Ecole;
-use App\Entity\Enfant;
-use App\Entity\Gardienne;
 use App\Entity\Salle;
-use App\Form\EnfantType;
-use App\Form\GardienneType;
+use App\Entity\Enfant;
 use App\Form\SalleType;
-use App\Repository\SalleRepository;
+use App\Form\EnfantType;
+use App\Entity\Gardienne;
+use App\Form\GardienneType;
 use App\Repository\UserRepository;
+use App\Repository\SalleRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @Route("/super")
@@ -35,7 +36,7 @@ class SuperController extends AbstractController
     /**
      * @Route("/", name="super")
      */
-    public function index(Request $request, Ecole $ecole = null): Response
+    public function index(Request $request, Ecole $ecole = null,UserPasswordHasherInterface $hasher): Response
     {
 
         if (!$ecole) {
@@ -80,6 +81,7 @@ class SuperController extends AbstractController
                 $em = $this->manager;
                 $salles = $gardienne->getSalles();
                 $salles->addGardienne($gardienne);
+                $gardienne->setPassword($hasher->hashPassword($gardienne,$gardienne->getPassword()));
                 $em->persist($gardienne);
                 $em->persist($salles);
                 $em->flush();

@@ -64,7 +64,7 @@ const Example = () => {
                         <h5>Waiting Parking</h5>
                     </div>
                     <div className='card-body'>
-                        <Parking />
+                        <Parking  />
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@ const Example = () => {
 const MainGarden = (props) => {
     return <QueryClientProvider client={queryClient}>
         <Example />
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
 }
 
