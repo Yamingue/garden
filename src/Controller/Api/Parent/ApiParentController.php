@@ -162,8 +162,12 @@ class ApiParentController extends AbstractController
             ]);
            // return $this->redirectToRoute('parent');
         }
+        if ($notification->getClose()) {
+            # code...
+            $notification->setClose(false);
+            $notification->setIsReady(false);
+        }
         $notification->setWaiting(true);
-        $notification->setClose(false);
         $this->manager->persist($notification);
         $this->manager->flush();
         $this->addFlash('success','Notifier');
