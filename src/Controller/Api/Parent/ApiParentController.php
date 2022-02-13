@@ -88,6 +88,7 @@ class ApiParentController extends AbstractController
         $notification->setEcole($enfant->getEcole());
         $notification->setSalle($enfant->getSalle());
         $notification->setIsReady(false);
+        $notification->setClose(false);
         if (isset($minute['minute'])) {
             //creation d'une date de correspondante a celle de la soumisson du formulaire
             $datetime = new \DateTimeImmutable();
@@ -162,6 +163,7 @@ class ApiParentController extends AbstractController
            // return $this->redirectToRoute('parent');
         }
         $notification->setWaiting(true);
+        $notification->setClose(false);
         $this->manager->persist($notification);
         $this->manager->flush();
         $this->addFlash('success','Notifier');
