@@ -10,8 +10,8 @@ import './bootstrap';
 import EnfantAttente from './Components/EnfantAttente';
 import EnfantSignaler from './Components/EnfantSignaler';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import Parking from './Components/Parking';
+import ParkingGardienne from './Pages/Gardiennes/ParkingGardienne';
 
 
 const queryClient = new QueryClient({
@@ -97,8 +97,20 @@ const MainGarden = (props) => {
     </QueryClientProvider>
 }
 
-const el = document.getElementById("garden")
-if (el) {
+const ParkingG = (props) => {
+    return <QueryClientProvider client={queryClient}>
+        <ParkingGardienne />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    </QueryClientProvider>
+}
 
-    reactDom.render(<MainGarden />, el)
+const garden = document.getElementById("garden")
+if (garden) {
+
+    reactDom.render(<MainGarden />, garden)
+}
+const garden_parking = document.getElementById("garden_parking")
+if (garden_parking) {
+
+    reactDom.render(<ParkingG/>, garden_parking)
 }
