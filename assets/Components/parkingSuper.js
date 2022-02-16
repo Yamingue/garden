@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useQuery } from 'react-query';
 import EnfantAttente from './EnfantAttente';
-import ParkingOnly from './ParkingOnly';
 
 
 const ParkingSuper = (props) => {
