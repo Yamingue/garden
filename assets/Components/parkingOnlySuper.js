@@ -4,7 +4,7 @@ import EnfantAttente from './EnfantAttente';
 import ParkingOnly from './ParkingOnly';
 
 
-const ParkingSuper = (props) => {
+const ParkingOnlySuper = (props) => {
     const { isLoading, error, data, refetch } = useQuery('parkingSuper', () =>
         fetch('/super/api/parking').then(res =>
             res.json()
@@ -33,11 +33,13 @@ const ParkingSuper = (props) => {
 
 
     if (error) return 'An error has occurred: ' + error.message
-    return (<>
+    return (<div className='row'>
         {
-            data.map(el => <EnfantAttente data={el} key={el.updateAt} />)
+            data.map(el => <div className='col-sm-3' key={el.updateAt}>
+                <ParkingOnly data={el} />
+            </div>)
         }
-    </>);
+    </div>);
 }
 
-export default ParkingSuper
+export default ParkingOnlySuper

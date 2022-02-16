@@ -10,8 +10,9 @@ import './bootstrap';
 import EnfantAttente from './Components/EnfantAttente';
 import EnfantSignaler from './Components/EnfantSignaler';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
-import ParkingSuper from './Components/parkingSuper';
+import ParkingOnlySuper from './Components/parkingOnlySuper';
 import SuperWay from './Components/SuperWay';
+import ParkingSuper from './Components/parkingSuper';
 
 const queryClient = new QueryClient()
 const Supervisor = (props) => {
