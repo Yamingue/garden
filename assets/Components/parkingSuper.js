@@ -1,6 +1,7 @@
 import React,{ useEffect } from 'react'
 import { useQuery } from 'react-query';
 import EnfantAttente from './EnfantAttente';
+import ParkingOnly from './ParkingOnly';
 
 
 const ParkingSuper = (props)=>{
@@ -32,11 +33,13 @@ if (isLoading) {
    
 
 if (error) return 'An error has occurred: ' + error.message
-    return(<>
+    return(<div className='row'>
     {
-        data.map(el=><EnfantAttente data={el} key={el.updateAt}/>)
+        data.map(el=><div className='col-sm-3' key={el.updateAt}>
+            <ParkingOnly data={el} />
+        </div>)
     }
-    </>);
+    </div>);
 }
 
 export default ParkingSuper

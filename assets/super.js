@@ -65,10 +65,10 @@ const Supervisor = (props) => {
                         </div>
                         <div className='card-body'>
                             <div className='row'>
-                                    {data.map(el => <div className='col-sm-3 mb-2'>
+                                {data.map(el => <div className='col-sm-3 mb-2'>
                                     <EnfantSignaler data={el} key={el.time} />
                                 </div>)}
-                                
+
                             </div>
                         </div>
                     </div>
@@ -86,14 +86,14 @@ const MainSuper = (props) => {
 const el = document.getElementById("super")
 const superParking = document.getElementById("superParking");
 const superWay = document.getElementById("superWay")
-if(superWay){
+if (superWay) {
     let OnWay = (props) => {
         return <QueryClientProvider client={queryClient}>
-           <div className='container'>
-           <div className='row'>
-                <SuperWay />
+            <div className='container'>
+                <div className='row'>
+                    <SuperWay />
+                </div>
             </div>
-           </div>
         </QueryClientProvider>
     }
     reactDom.render(<OnWay />, superWay)
@@ -101,10 +101,8 @@ if(superWay){
 if (superParking) {
     let Parking = (props) => {
         return <QueryClientProvider client={queryClient}>
-            <div className='row'>
-                <div className='col-sm-5 mx-auto'>
-                    <ParkingSuper />
-                </div>
+            <div className='container'>
+                <ParkingSuper />
             </div>
         </QueryClientProvider>
     }

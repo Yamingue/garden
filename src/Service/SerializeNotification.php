@@ -23,7 +23,8 @@ class SerializeNotification
                 'photo' => $enfant->getPhoto(),
                 'nom' => $enfant->getNom(),
                 'prenom' => $enfant->getPrenom(),
-                'age' => $enfant->getAge()
+                'age' => $enfant->getAge(),
+                'salle' => $enfant->getSalle()->getNom()
             ]
         ];
         return $not;
