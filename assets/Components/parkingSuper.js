@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useQuery } from 'react-query';
 import EnfantAttente from './EnfantAttente';
-import ParkingOnly from './ParkingOnly';
 
 
 const ParkingSuper = (props) => {
@@ -35,7 +34,7 @@ const ParkingSuper = (props) => {
     if (error) return 'An error has occurred: ' + error.message
     return (<>
         {
-            data.map(el => <ParkingOnly data={el} key={el.updateAt} />)
+            data.map(el => <EnfantAttente data={el} key={el.updateAt} />)
         }
     </>);
 }

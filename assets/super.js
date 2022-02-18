@@ -87,6 +87,19 @@ const MainSuper = (props) => {
 const el = document.getElementById("super")
 const superParking = document.getElementById("superParking");
 const superWay = document.getElementById("superWay")
+const superParkingOnly = document.getElementById("superParkingOnly")
+if (superParkingOnly) {
+    let Parking = (props) => {
+        return <QueryClientProvider client={queryClient}>
+            <div className='container'>
+                <div className='row'>
+                    <ParkingOnlySuper />
+                </div>
+            </div>
+        </QueryClientProvider>
+    }
+    reactDom.render(<Parking />, superParkingOnly)
+}
 if (superWay) {
     let OnWay = (props) => {
         return <QueryClientProvider client={queryClient}>
