@@ -4,9 +4,7 @@ import ParkingOnly from '../../Components/ParkingOnly'
 
 const ParkingGardienne = (props) => {
     const { isLoading, error, data, refetch } = useQuery('parkingOnly', () =>
-        fetch('/gardienne/api/parking').then(res =>
-            res.json()
-        )
+        fetch('/gardienne/api/parking').then(res =>res.json())
     )
     let timer = setInterval(() => {
         refetch()

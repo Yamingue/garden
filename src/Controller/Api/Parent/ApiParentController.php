@@ -56,9 +56,7 @@ class ApiParentController extends AbstractController
             'telephone' => $currentUser->getTelephone(),
             'enfants' => $enfants
         ];
-        return $this->json($user, 200, [], ['circular_reference_handler' => function ($object) {
-            return $object->getId();
-        }]);
+        return $this->json($user);
     }
     /**
      *@Route("/notif/{id}/",  name="notif", methods={"POST"})
@@ -139,6 +137,7 @@ class ApiParentController extends AbstractController
      *@Route("/parking/{id}", name="inparking", methods={"GET"})
      */
     public function inParking(Enfant $enfant=null){
+
         if ($enfant == null) {
             # code...
             return $this->json([

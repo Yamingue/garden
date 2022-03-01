@@ -82,6 +82,23 @@ security:
                 provider: app_user_provider
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+        api_gardienne_main:
+            pattern: ^/api/gardienne/login
+            stateless: true
+            provider: app_gardienne_provider
+            json_login:
+                check_path: /api/gardienne/login
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api_gardienne:
+            pattern:   ^/api/gardienne
+            stateless: true
+            guard:
+                provider: app_gardienne_provider
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
         main:
             lazy: true
             provider: app_gardienne_provider
@@ -106,3 +123,4 @@ security:
          - { path: ^/gardienne, roles: ROLE_USER }
          - { path: ^/parent, roles: ROLE_USER }
          - { path: ^/api/parent, roles: ROLE_USER }
+         - { path: ^/api/gardienne, roles: ROLE_USER }

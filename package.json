@@ -19,6 +19,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.0.0",
         "@material/top-app-bar": "^13.0.0",
+        "firebase": "^9.6.7",
         "mdb-ui-kit": "^3.10.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.2",

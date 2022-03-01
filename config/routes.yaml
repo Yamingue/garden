@@ -3,3 +3,6 @@
 #    controller: App\Controller\DefaultController::index
 api_parent_check:
     path: /api/parent/login
+api_gardienne_check:
+    path: /api/gardienne/login
+
