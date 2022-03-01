@@ -65,23 +65,6 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
-        api_parent_main:
-            pattern: ^/api/parent/login
-            stateless: true
-            provider: app_user_provider
-            json_login:
-                check_path: /api/parent/login
-                username_path: email
-                password_path: password
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
-        api_parent:
-            pattern:   ^/api/parent
-            stateless: true
-            guard:
-                provider: app_user_provider
-                authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
         api_gardienne_main:
             pattern: ^/api/gardienne/login
             stateless: true
@@ -97,6 +80,23 @@ security:
             stateless: true
             guard:
                 provider: app_gardienne_provider
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        api_parent_main:
+            pattern: ^/api/parent/login
+            stateless: true
+            provider: app_user_provider
+            json_login:
+                check_path: /api/parent/login
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api_parent:
+            pattern:   ^/api/parent
+            stateless: true
+            guard:
+                provider: app_user_provider
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
         main:
