@@ -6,7 +6,6 @@ use App\Entity\Gardienne;
 use App\Repository\NotificationRepository;
 use App\Service\SerializeNotification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,7 +21,7 @@ class GardienneApiController extends AbstractController
     /**
      * @Route("/onway", name="onway_gardienne_api")
      */
-    public function index(): Response
+    public function index()
     {
         /**@var Gardienne */
         $gardienne = $this->getUser();
@@ -34,7 +33,7 @@ class GardienneApiController extends AbstractController
     /**
      * @Route("/parking", name="parking_gardienne_api")
      */
-    public function inparking(): Response
+    public function inparking()
     {
         /**@var Gardienne */
         $gardienne = $this->getUser();

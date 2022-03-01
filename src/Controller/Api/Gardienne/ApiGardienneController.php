@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ApiGardienneController extends AbstractController
 {
     #[Route('/api/gardienne', name: 'api_gardienne')]
-    public function index(): Response
+    public function index()
     {
         /**@var Gardienne */
         $curentUser = $this->getUser();

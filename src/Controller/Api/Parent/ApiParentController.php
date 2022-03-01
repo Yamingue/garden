@@ -28,7 +28,7 @@ class ApiParentController extends AbstractController
     /**
      *@Route("/", name="api_parent", methods={"GET"})
      */
-    public function index(): Response
+    public function index()
     {
         /**@var User */
         $currentUser = $this->getUser();
