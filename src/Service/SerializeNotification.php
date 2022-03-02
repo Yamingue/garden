@@ -9,6 +9,7 @@ class SerializeNotification
     static function converteToArray(Notification $notif)
     {
         $enfant = $notif->getEnfant();
+        $parent = $notif->getParent();
         $not = [
             'id' => $notif->getId(),
             'updateAt' => $notif->getUpdateAt(),
@@ -25,6 +26,12 @@ class SerializeNotification
                 'prenom' => $enfant->getPrenom(),
                 'age' => $enfant->getAge(),
                 'salle' => $enfant->getSalle()->getNom()
+            ],
+            'parent'=>[
+                'id'=>$parent->getId(),
+                'nom'=>$parent->getNom(),
+                'prenom'=>$parent->getPrenom(),
+                'email'=>$parent->getEmail()
             ]
         ];
         return $not;
