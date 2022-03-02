@@ -118,6 +118,7 @@ security:
          - { path: ^/gardienne/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/parent/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/api/parent/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/gardienne/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/api/parent/check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/super, roles: ROLE_USER }
          - { path: ^/gardienne, roles: ROLE_USER }
