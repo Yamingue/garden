@@ -97,7 +97,7 @@ class EnfantController extends AbstractController
             }
         }
 
-        return $this->render('form.html.twig', [
+        return $this->render('super_enfant/form.html.twig', [
             'form' => $form->createView(),
             'name' => $enfant->getNom()
         ]);
