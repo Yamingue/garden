@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Controller\Api\Gardienne;
+namespace App\Controller\Api\Parent;
 
-use App\Entity\User;
 use App\Entity\Enfant;
 use App\Entity\Message;
 use App\Service\SerialiseMessages;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
-#[Route('/api/gardienne/message')]
-class ApiGardienneMessageController extends AbstractController
+#[Route('/api/parent/messages')]
+class ApiParentMessagesController extends AbstractController
 {
 
     private $manager;
@@ -22,41 +21,34 @@ class ApiGardienneMessageController extends AbstractController
     {
         $this->manager = $man->getManager();
     }
-    #[Route('/{id}', name: 'app_api_gardienne_message', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_api_parent_messages', methods: ['GET'])]
     public function index(Enfant $enfant = null): JsonResponse
     {
+        if ($enfant->getParent()->contains($this->getUser())) {
+            # code...
+            return $this->json(SerialiseMessages::collectionToArray($enfant->getMessages()));
+        }
+        return $this->json([]);
+    }
+    #[Route('/send/{id}', name: 'app_api_parent_messages_send', methods: ['POST'])]
+    public function send(Enfant $enfant = null, Request $request): JsonResponse
+    {
+
         if ($enfant == null) {
             # code...
             return $this->json(['code'=>200,'message'=>'child not selected']);
         }
 
-        //dd(count($enfant->getMessages()));
-        return $this->json(SerialiseMessages::collectionToArray($enfant->getMessages()), 200, [], [AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object) {
-            return $object->getId();
-        }]);
-    }
-
-    #[Route('/send/{enfant}/parent-{user}', name: 'app_api_gardienne_message_send', methods: ['POST'])]
-    public function send(Enfant $enfant = null, User $user = null, Request $request): JsonResponse
-    {
-
-        if ($enfant == null) {
-            # code...
-            return $this->json([]);
-        }
-        if (!$enfant->getParent()->contains($user)) {
+        if (!$enfant->getParent()->contains($this->getUser())) {
             # code...
             return $this->json(['code' => 403, 'message' => 'Action not authorize'], 403);
         }
-
-
-        //  $messages = $enfant->getMessages();
         $messageData = json_decode($request->getContent(), true);
         if (isset($messageData['message']) && !empty($messageData['message'])) {
             $message = new Message();
             $message->setBody($messageData['message']);
             $message->setEnfant($enfant);
-            $message->setGardienne($this->getUser());
+            $message->setUser($this->getUser());
             // dd($message);
             $this->manager->persist($message);
             $this->manager->flush();

@@ -10,29 +10,46 @@ class SerialiseMessages
 
     static function convertToArray(Message $mess)
     {
-        $message = [
-            'id' => $mess->getId(),
-            'body' => $mess->getBody(),
-            'enfant' => [
-                'id' => $mess->getEnfant()->getId(),
-                'nom' => $mess->getEnfant()->getNom(),
-                'prenom' => $mess->getEnfant()->getPrenom(),
-            ],
-            'user' => [
-                'id' => $mess->getUser()->getId(),
-                'email' => $mess->getUser()->getEmail(),
-                'nom' => $mess->getUser()->getNom(),
-                'prenom' => $mess->getUser()->getPrenom(),
-                'photo' => null
-            ],
-            'gardienne' => [
-                'id' => $mess->getGardienne()->getId(),
-                'email' => $mess->getGardienne()->getEmail(),
-                'nom' => $mess->getGardienne()->getNom(),
-                'prenom' => $mess->getGardienne()->getPrenom(),
-                'photo' => $mess->getGardienne()->getPhoto()
-            ]
-        ];
+        $message =[];
+        if ($mess->getUser()) {
+            # code...
+            $message = [
+                'id' => $mess->getId(),
+                'body' => $mess->getBody(),
+                'enfant' => [
+                    'id' => $mess->getEnfant()->getId(),
+                    'nom' => $mess->getEnfant()->getNom(),
+                    'prenom' => $mess->getEnfant()->getPrenom(),
+                ],
+                'user' => [
+                    'id' => $mess->getUser()->getId(),
+                    'email' => $mess->getUser()->getEmail(),
+                    'nom' => $mess->getUser()->getNom(),
+                    'prenom' => $mess->getUser()->getPrenom(),
+                    'photo' => null
+                ],
+                'gardienne' => null
+            ];
+        }else{
+            $message = [
+                'id' => $mess->getId(),
+                'body' => $mess->getBody(),
+                'enfant' => [
+                    'id' => $mess->getEnfant()->getId(),
+                    'nom' => $mess->getEnfant()->getNom(),
+                    'prenom' => $mess->getEnfant()->getPrenom(),
+                ],
+                'user' => null,
+                'gardienne' => [
+                    'id' => $mess->getGardienne()->getId(),
+                    'email' => $mess->getGardienne()->getEmail(),
+                    'nom' => $mess->getGardienne()->getNom(),
+                    'prenom' => $mess->getGardienne()->getPrenom(),
+                    'photo' => $mess->getGardienne()->getPhoto()
+                ]
+            ];
+        }
+        
 
         return $message;
     }
