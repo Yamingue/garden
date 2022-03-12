@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GardienneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -67,6 +69,16 @@ class Gardienne implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\JoinColumn(nullable=false)
      */
     private $salles;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="gardienne")
+     */
+    private $message;
+
+    public function __construct()
+    {
+        $this->message = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -232,5 +244,35 @@ class Gardienne implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->nom.' '.$this->prenom;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessage(): Collection
+    {
+        return $this->message;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->message->contains($message)) {
+            $this->message[] = $message;
+            $message->setGardienne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->message->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getGardienne() === $this) {
+                $message->setGardienne(null);
+            }
+        }
+
+        return $this;
     }
 }
