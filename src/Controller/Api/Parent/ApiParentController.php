@@ -49,6 +49,7 @@ class ApiParentController extends AbstractController
        
         $user = [
             'code' => 200, 
+            'id'=>$currentUser->getId(),
             'email' => $currentUser->getEmail(),
             'code_parent' => $currentUser->getCode(),
             'nom' => $currentUser->getNom(),
