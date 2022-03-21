@@ -24,7 +24,7 @@ class ApiParentController extends AbstractController
         $this->notificationRepository = $notif;
     }
 
-    #[Route('/fcmtoken', name:'user_fcmToken')]
+    #[Route('/fcmtoken', name:'user_fcmToken', methods:['POST'])]
     public function tokenRefresh(Request $req){
         $content = json_decode($req->getContent(),true);
         /**@var User */
