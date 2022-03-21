@@ -12,9 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- *@Route("/api/parent")
- */
+#[Route('/api/parent')]
 class ApiParentController extends AbstractController
 {
     private $manager;
@@ -24,6 +22,30 @@ class ApiParentController extends AbstractController
     {
         $this->manager = $doctrine->getManager();
         $this->notificationRepository = $notif;
+    }
+
+    #[Route('/fcmtoken', name:'user_fcmToken')]
+    public function tokenRefresh(Request $req){
+        $content = json_decode($req->getContent(),true);
+        /**@var User */
+        $user = $this->getUser();
+
+        if (isset($content['fcmtoken']) && $content['fcmtoken'] != null ) {
+            # code...
+            $user->setFcmtoken($content['fcmtoken']);
+            $this->manager->persist($user);
+            $this->manager->flush();
+
+            return $this->json([
+                'code'=>200,
+                'message'=>'token update'
+            ]);
+
+        }
+        return $this->json([
+            'code'=>403,
+            'message'=>'Something wrong'
+        ]);
     }
     /**
      *@Route("/", name="api_parent", methods={"GET"})
