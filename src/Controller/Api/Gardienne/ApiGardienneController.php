@@ -28,7 +28,8 @@ class ApiGardienneController extends AbstractController
             'salles'=>[
                 'id'=>$curentUser->getSalles()->getId(),
                 'nom'=>$curentUser->getSalles()->getNom(),
-            ]
+            ],
+            'fcmtoken'=>$curentUser->getFcmtoken()
         ];
         return $this->json($user, 200, [], ['circular_reference_handler' => function ($object) {
             return $object->getId();

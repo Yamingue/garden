@@ -26,7 +26,8 @@ class SerialiseMessages
                     'email' => $mess->getUser()->getEmail(),
                     'nom' => $mess->getUser()->getNom(),
                     'prenom' => $mess->getUser()->getPrenom(),
-                    'photo' => null
+                    'photo' => null,
+                    'fcmtoken' => $mess->getUser()->getFcmtoken()
                 ],
                 'gardienne' => null
             ];
@@ -45,7 +46,8 @@ class SerialiseMessages
                     'email' => $mess->getGardienne()->getEmail(),
                     'nom' => $mess->getGardienne()->getNom(),
                     'prenom' => $mess->getGardienne()->getPrenom(),
-                    'photo' => $mess->getGardienne()->getPhoto()
+                    'photo' => $mess->getGardienne()->getPhoto(),
+                    'fcmtoken' => $mess->getGardienne()->getFcmtoken()
                 ]
             ];
         }

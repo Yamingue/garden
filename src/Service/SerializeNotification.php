@@ -31,7 +31,8 @@ class SerializeNotification
                 'id'=>$parent->getId(),
                 'nom'=>$parent->getNom(),
                 'prenom'=>$parent->getPrenom(),
-                'email'=>$parent->getEmail()
+                'email'=>$parent->getEmail(),
+                'fcmtoken'=>$parent->getFcmtoken()
             ]
         ];
         return $not;

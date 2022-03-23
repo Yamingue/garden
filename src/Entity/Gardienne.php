@@ -75,6 +75,11 @@ class Gardienne implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $message;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $fcmtoken;
+
     public function __construct()
     {
         $this->message = new ArrayCollection();
@@ -272,6 +277,18 @@ class Gardienne implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setGardienne(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFcmtoken(): ?string
+    {
+        return $this->fcmtoken;
+    }
+
+    public function setFcmtoken(?string $fcmtoken): self
+    {
+        $this->fcmtoken = $fcmtoken;
 
         return $this;
     }

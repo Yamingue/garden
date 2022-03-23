@@ -7,6 +7,7 @@ use App\Entity\Enfant;
 use App\Entity\Notification;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\NotificationRepository;
+use App\Service\FcmNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -81,9 +82,8 @@ class ApiParentController extends AbstractController
         ];
         return $this->json($user);
     }
-    /**
-     *@Route("/notif/{id}/",  name="notif", methods={"POST"})
-     */
+
+    #[Route('/notif/{id}', name:'notif_parent', methods:['POST'])]
     public function notifie(Enfant $enfant = null,Request $request)
     {
         $minute = json_decode($request->getContent(),true);
@@ -121,9 +121,14 @@ class ApiParentController extends AbstractController
             $this->manager->persist($notification);
             $this->manager->flush();
            // dd($notification,$minute);
+           $classChild = $enfant->getSalle()->getId();
+           $fcmResponse = FcmNotification::sendToTopic($enfant->getNom().' is comming',
+           $enfant->getNom().' parent comme in '.$minute.' mn',
+           'class-'.$classChild);
            return $this->json([
                'code'=>200,
-               'message'=>'notifi succes'
+               'message'=>'notifi succes',
+               'fcm'=>$fcmResponse
            ]);
 
         }
@@ -160,7 +165,8 @@ class ApiParentController extends AbstractController
      *@Route("/parking/{id}", name="inparking", methods={"GET"})
      */
     public function inParking(Enfant $enfant=null){
-
+        /**@var User */
+        $user = $this->getUser();
         if ($enfant == null) {
             # code...
             return $this->json([
@@ -168,7 +174,7 @@ class ApiParentController extends AbstractController
                 'message'=>'chil not selected'
             ]);
         }
-        if (!$this->getUser()->getEnfants()->contains($enfant)) {
+        if (!$user->getEnfants()->contains($enfant)) {
             # code...
             return $this->json([
                 'code'=>404,
@@ -192,10 +198,13 @@ class ApiParentController extends AbstractController
         $notification->setWaiting(true);
         $this->manager->persist($notification);
         $this->manager->flush();
-        $this->addFlash('success','Notifier');
+        $classChild = $enfant->getSalle()->getId();
+        $fcmResponse = FcmNotification::sendToTopic($enfant->getNom()."'s parent is here",$enfant->getNom().' must be ready to go','class-'.$classChild);
+        
         return $this->json([
             'code'=>200,
             'message' =>'notifie',
+            'fcm'=>$fcmResponse
         ],200);
        // dd($notification);
     }
