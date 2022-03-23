@@ -122,9 +122,7 @@ class ApiParentController extends AbstractController
             $this->manager->flush();
            // dd($notification,$minute);
            $classChild = $enfant->getSalle()->getId();
-           $fcmResponse = FcmNotification::sendToTopic($enfant->getNom().' is comming',
-           $enfant->getNom().' parent comme in '.$minute.' mn',
-           'class-'.$classChild);
+           $fcmResponse = FcmNotification::sendToTopic($enfant->getNom().' is comming',$enfant->getNom().' parent comme in '.$minute.' mn','class-'.$classChild);
            return $this->json([
                'code'=>200,
                'message'=>'notifi succes',
