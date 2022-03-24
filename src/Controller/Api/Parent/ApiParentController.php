@@ -48,9 +48,8 @@ class ApiParentController extends AbstractController
             'message'=>'Something wrong'
         ]);
     }
-    /**
-     *@Route("/", name="api_parent", methods={"GET"})
-     */
+
+    #[Route('/', name:'api_parent', methods:['GET'])]
     public function index()
     {
         /**@var User */
@@ -138,9 +137,7 @@ class ApiParentController extends AbstractController
         ]);
     }
 
-    /**
-     *@Route("/all_notif", name="notifi_all_child", methods={"POST"})
-     */
+    #[Route('/all_notif', name:'notifi_all_child', methods:['POST'])]
     public function getAllTodayNotification()
     {
         /**@var User */
@@ -159,9 +156,7 @@ class ApiParentController extends AbstractController
         }]);
     }
 
-    /**
-     *@Route("/parking/{id}", name="inparking", methods={"GET"})
-     */
+    #[Route('/parking/{id}', name:'inparking', methods:['GET'])]
     public function inParking(Enfant $enfant=null){
         /**@var User */
         $user = $this->getUser();
@@ -206,9 +201,8 @@ class ApiParentController extends AbstractController
         ],200);
        // dd($notification);
     }
-    /**
-     *@Route("/isready/{id}")
-     */
+
+    #[Route("/isready/{id}")]
     public function childReady(Enfant $enfant)
     {
         /**@var User */
