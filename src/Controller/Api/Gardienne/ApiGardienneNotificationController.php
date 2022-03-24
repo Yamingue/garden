@@ -7,6 +7,7 @@ use App\Entity\Gardienne;
 use App\Entity\Notification;
 use App\Service\SerializeNotification;
 use App\Repository\NotificationRepository;
+use App\Service\FcmNotification;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,6 +52,7 @@ class ApiGardienneNotificationController extends AbstractController
             $notification->setIsReady(true);
             $em->persist($notification);
             $em->flush();
+            FcmNotification::sendToTopic('Child ready',$notification->getEnfant()->getPrenom().' is ready','parent-'.$notification->getParent()->getId());
             return $this->json([
                 'code' => 200,
                 'message' => 'Done'
