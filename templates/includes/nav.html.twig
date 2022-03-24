@@ -15,7 +15,7 @@
                     <a class="nav-link active" aria-current="page" href="/parent">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a id="copy" class="nav-link" href="#">{% if app.user %}
+                    <a id="copy" class="nav-link" href="#">{% if app.user and app.user.code %}
                         {{ app.user.code }}
                     {% endif %}</a>
                 </li>
