@@ -52,10 +52,11 @@ class ApiGardienneNotificationController extends AbstractController
             $notification->setIsReady(true);
             $em->persist($notification);
             $em->flush();
-            FcmNotification::sendToTopic('Child ready',$notification->getEnfant()->getPrenom().' is ready','parent-'.$notification->getParent()->getId());
+            $fcm = FcmNotification::sendToTopic('Child ready',$notification->getEnfant()->getPrenom().' is ready','parent-'.$notification->getParent()->getId());
             return $this->json([
                 'code' => 200,
-                'message' => 'Done'
+                'message' => 'Done',
+                'fcm'=>$fcm
             ], 200);
         } else {
             return $this->json([
