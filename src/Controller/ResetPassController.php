@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\GardienneRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class ResetPassController extends AbstractController
     }
 
     #[Route('/gardienne', name: 'app_reset_pass_gardienne', methods:['POST'])]
-    public function index(Request $request,GardienneRepository $gr): Response
+    public function gardienne(Request $request,GardienneRepository $gr): Response
     {
         $email = json_decode($request->getContent(),true);
         if (isset($email['email']) && !empty($email['email'])) {
@@ -39,7 +40,7 @@ class ResetPassController extends AbstractController
                 $this->em->persist($gardienne);
                 $this->em->flush();
                 $email = (new Email())
-                        ->from('admin@garden.umoyatech.ca')
+                        ->from('no-reply@umoyatech.ca')
                         ->to($email['email'])
                         ->subject('you have request new password')
                         ->text("$pass is your new password");
@@ -53,8 +54,37 @@ class ResetPassController extends AbstractController
 
         }
         return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ResetPassController.php',
+            'message' => "data empty or acount doesn't existe",
+            'code' => 200,
+        ]);
+    }
+    #[Route('/parent', name:'parent_reset_pass', methods:['POST'])]
+    public function parent(Request $request, UserRepository $userRepository)
+    {
+        $email = json_decode($request->getContent(),true);
+        if (isset($email['email']) && !empty($email['email'])) {
+            $user = $userRepository->findOneBy(['email'=>$email['email']]);
+            if ($user) {
+                $pass = uniqid();
+                $user->setPassword($this->hasher->hashPassword($user,$pass));
+                $this->em->persist($user);
+                $this->em->flush();
+                $email = (new Email())
+                        ->from('no-reply@umoyatech.ca')
+                        ->to($email['email'])
+                        ->subject('you have request new password')
+                        ->text("$pass is your new password");
+                $this->mailer->send($email);
+                return $this->json([
+                    'code'=>200,
+                    'message'=>'New passworld has been send to your mail'
+                ]);
+            }
+        }
+
+        return $this->json([
+            'message' => "data empty or acount doesn't existe",
+            'code' => 200,
         ]);
     }
 }
