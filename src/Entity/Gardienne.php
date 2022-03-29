@@ -80,6 +80,11 @@ class Gardienne implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $fcmtoken;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $recovry;
+
     public function __construct()
     {
         $this->message = new ArrayCollection();
@@ -289,6 +294,18 @@ class Gardienne implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFcmtoken(?string $fcmtoken): self
     {
         $this->fcmtoken = $fcmtoken;
+
+        return $this;
+    }
+
+    public function getRecovry(): ?int
+    {
+        return $this->recovry;
+    }
+
+    public function setRecovry(?int $recovry): self
+    {
+        $this->recovry = $recovry;
 
         return $this;
     }
