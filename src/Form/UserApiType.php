@@ -16,9 +16,24 @@ class UserApiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('email',EmailType::class)
+            ->add('nom',null,[
+                'constraints'=>[
+                    new NotBlank()
+                ]
+            ])
+            ->add('prenom',null,[
+                'constraints'=>[
+                    new NotBlank()
+                ]
+            ])
+            ->add('email',EmailType::class,[
+                'constraints'=>[
+                    new NotBlank(),
+                    new Length([
+                        'min'=>6
+                    ])
+                ]
+            ])
             ->add('telephone',NumberType::class)
             ->add('password',null,[
                 'constraints'=>[
