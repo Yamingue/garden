@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Tour</title>
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .welcome-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome-container span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            min-width: 150;
+            height: 50px;
+            background-color: hsla(208, 100%, 68%, 0.3);
+            top: calc(50% - 50px);
+            transition: all .2s ease-in;
+            font-size: 30px;
+            padding: 10px;
+            font-weight: bold;
+
+        }
+
+        .welcome-container span:hover {
+            border: #5ab2ff solid 5px;
+            color: #fff;
+            background-color: #a065f3;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0">
+            <div class="container">
+                <a class="navbar-brand" href="#!"><span style="color: #a065f3;">Flash</span>
+                    <spanm style="color: #5ab2ff;">Tour</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About Solution</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">Flash tour</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">Flash tour pro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!">Team</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+        <!--Section: Design Block-->
+        <section>
+            <!-- Intro -->
+            <div id="intro" class="bg-image"
+                style="background-image: url('/static/undraw_doll_play_evbw.svg'); height: 75vh">
+                <div class="mask" style="background-color: hsla(265, 86%, 67%, 0.2);"></div>
+                <div class="welcome-container">
+                    <span>
+                        Welcome to Flash Tour
+                    </span>
+                </div>
+            </div>
+            <!-- Intro -->
+            <div id="about" class="container mt-2 mb-2">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="/static/undraw_solution_mindset_re_57bf.svg" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">About Flash tour</h5>
+                                <p class="card-text">
+                                    This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Section: Design Block-->
+    </header>
+</body>
+
+</html>
