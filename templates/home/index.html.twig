@@ -32,17 +32,17 @@
             position: absolute;
             color: blue;
             min-width: 150;
-            background-color: hsla(208, 100%, 68%, 0.3);
             top: calc(50% - 50px);
             transition: all .2s ease-in;
             font-size: 30px;
             padding: 10px;
             font-weight: bold;
+            box-shadow: #a065f3 0px 1px 3px;
 
         }
 
         .welcome-container span:hover {
-            border: #5ab2ff solid 5px;
+            border: #5ab2ff solid 2px;
             color: #fff;
             background-color: #a065f3;
 
@@ -138,9 +138,14 @@
                         odio, enim officia.
 
                     </p>
-                    <a href="https://play.google.com/store/apps/details?id=com.umoyatech.garden&hl=fr&gl=US">
-                        <img class="store" src="/static/353328.svg" alt="" srcset="">
-                    </a>
+                    <div class=" align-items-center d-flex">
+                        <a href="https://play.google.com/store/apps/details?id=com.umoyatech.garden&hl=fr&gl=US">
+                            <img class="store" src="/static/353328.svg" alt="" srcset="">
+                        </a>
+                        <a href="/parent" class="btn btn-secondary">
+                            <i class="fa-solid fa-globe"></i>
+                            Acces on web</a>
+                    </div>
 
                 </div>
             </div>
@@ -157,14 +162,22 @@
                         odio, enim officia.
 
                     </p>
-                    <a href="https://play.google.com/store/apps/details?id=com.umoyatech.gradenpro&hl=fr&gl=US">
-                        <img class="store" src="/static/353328.svg" alt="" srcset="">
-                    </a>
+                    <div class=" align-items-center d-flex">
+                        <a href="https://play.google.com/store/apps/details?id=com.umoyatech.gradenpro&hl=fr&gl=US">
+                            <img class="store" src="/static/353328.svg" alt="" srcset="">
+                        </a>
+                        <a href="/super" class="btn btn-secondary">
+                            <i class="fa-solid fa-globe"></i>
+                            Acces on web</a>
+                    </div>
+                   
 
                 </div>
             </div>
         </div>
     </section>
+    {% include "home/price.html.twig" %}
+    <h4 class="mb-4 text-center"><strong>Contact Us</strong></h4>
     <section draggable="false" class="container pt-5" data-v-271253ee="">
         <section class="mb-10 text-center">
             <style>
