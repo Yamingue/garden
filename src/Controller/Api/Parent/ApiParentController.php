@@ -60,7 +60,7 @@ class ApiParentController extends AbstractController
             $enfant =[
                 'id'=>$e->getId(),
                 'photo'=>$e->getPhoto(),
-                'nom'=>$e->getPrenom(),
+                'nom'=>$e->getNom(),
                 'prenom'=>$e->getPrenom(),
                 'ecole'=>[
                     'nom'=>$e->getEcole()->getName()
