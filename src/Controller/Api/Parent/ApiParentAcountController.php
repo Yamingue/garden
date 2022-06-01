@@ -60,7 +60,7 @@ class ApiParentAcountController extends AbstractController
                 'code' => 200
             ]);
         }
-       
+
         $this->manager->persist($user);
         $this->manager->flush();
         //$fon
@@ -92,15 +92,9 @@ class ApiParentAcountController extends AbstractController
             } else {
                 return $this->json([
                     'message' => 'Invalide pass',
-                    'code' => 200,
+                    'code' => 401,
                 ]);
             }
-
-            return $this->json([
-                'message' => 'data is here',
-                'code' => 200,
-                'user' => $this->getUser()
-            ]);
         } else {
 
             return $this->json([
