@@ -3,6 +3,7 @@
 namespace App\Controller\Api\Parent;
 
 use App\Entity\User;
+use App\Form\ApiUserUpdateType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,16 +17,55 @@ class ApiParentAcountController extends AbstractController
 {
     private $hacher;
     private $manager;
+
     public function __construct(UserPasswordHasherInterface  $hacher, ManagerRegistry $manager)
     {
         $this->hacher = $hacher;
         $this->manager = $manager->getManager();
     }
+
     #[Route('/delete', name: 'app_parent_acount_delete')]
     public function index(): Response
     {
         return $this->json([
             'message' => 'your deletion request is pending and will take effect within 30 days',
+            'code' => 200,
+        ]);
+    }
+
+    #[Route('/update', name: 'app_parent_acount_update', methods: ['POST'])]
+    public function update(Request $request): Response
+    {
+        $content = json_decode($request->getContent(), true);
+        /**@var User */
+        $user = $this->getUser();
+        //dd($content);
+        $form = $this->createForm(ApiUserUpdateType::class, $user);
+        // dd($form->createView());
+        $form->submit($content);
+        if (!$form->isValid()) {
+            # code...
+            $errors = [];
+            foreach ($form->getErrors(true, true) as $error) {
+                # code...
+                $e = [
+                    'label' => $error->getOrigin()->getName(),
+                    'message' => $error->getMessage()
+                ];
+                $errors[] = $e;
+            }
+            //dd($errors);
+            return $this->json([
+                'error' => $errors,
+                'code' => 200
+            ]);
+        }
+       
+        $this->manager->persist($user);
+        $this->manager->flush();
+        //$fon
+        return $this->json([
+            'message' => 'Acount update succes you need to login',
             'code' => 200,
         ]);
     }
