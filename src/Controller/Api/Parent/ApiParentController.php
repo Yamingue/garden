@@ -24,7 +24,14 @@ class ApiParentController extends AbstractController
         $this->manager = $doctrine->getManager();
         $this->notificationRepository = $notif;
     }
-
+    #[Route('/delete_acount')]
+    public function deleteAcount(Type $var = null)
+    {
+        return $this->json([
+            'code'=>200,
+            'message'=>"your deletion request is pending and will take effect within 30 days "
+        ]);
+    }
     #[Route('/fcmtoken', name:'user_fcmToken', methods:['POST'])]
     public function tokenRefresh(Request $req){
         $content = json_decode($req->getContent(),true);
