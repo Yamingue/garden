@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -103,5 +104,42 @@ class ApiParentAcountController extends AbstractController
             ]);
         }
         dd($content);
+    }
+    
+    #[Route('/update/photo', methods:["POST"])]
+    public function updatePhoto(Request $request, ManagerRegistry $registry)
+    {
+        /** @var UploadedFile */
+        $file = $request->files->get('file');
+        if ($file) {
+            # code...
+            $extension =['PNG','JPG',"GIF"];
+            $ext = $file->guessExtension();
+            /**@var User */
+            $user = $this->getUser();
+
+            if (in_array(strtoupper($ext),$extension)) {
+                $filename = uniqid().'.'.$ext;
+                $file->move('image',$filename);
+                $user->setPhoto('image/'.$filename);
+                $em = $registry->getManager();
+                $em->persist($user);
+                $em->flush();
+               return $this->json([
+                   'code'=>200,
+                   'message'=>'image update success'
+               ]);
+            }else{
+                return $this->json([
+                    'code'=>401,
+                    'meaasge'=>'file not supported'
+                ]);
+            }
+            dd($ext);
+        }
+        return $this->json([
+            'code'=>401,
+            'meaasge'=>'file empty'
+        ]);
     }
 }

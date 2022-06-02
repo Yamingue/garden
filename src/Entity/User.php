@@ -89,6 +89,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $fcmtoken;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->enfants = new ArrayCollection();
@@ -345,6 +350,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFcmtoken(?string $fcmtoken): self
     {
         $this->fcmtoken = $fcmtoken;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }
