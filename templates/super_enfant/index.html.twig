@@ -1,7 +1,7 @@
 {% extends "super.html.twig" %}
 
 {% block body %}
-<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#superEnfant">
+<button type="button" class="btn btn-gradient-primary mb-2" data-bs-toggle="modal" data-bs-target="#superEnfant">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
       </svg> 
@@ -43,10 +43,10 @@
                 {% endfor %}
             </td>
             <td>
-                <a href="{{ path("delete_enfant",{id:e.id}) }}" class="btn btn-sm btn-danger">
+                <a href="{{ path("delete_enfant",{id:e.id}) }}" class="btn btn-sm btn-gradient-danger">
                     <i class="fas fa-trash-alt"></i>
                 </a>
-                <a href="{{ path("edite_enfant",{id:e.id}) }}" class="btn btn-sm btn-warning">
+                <a href="{{ path("edite_enfant",{id:e.id}) }}" class="btn btn-sm btn-gradient-warning">
                     <i class="fas fa-edit"></i>
                 </a>
             </td>

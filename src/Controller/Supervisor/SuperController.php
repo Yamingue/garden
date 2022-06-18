@@ -95,50 +95,11 @@ class SuperController extends AbstractController
             }
         } // fin de creation de gardienne
 
-        // ajout d'un enfant
-        $enfant = new Enfant();
-        $enfant->setEcole($ecole);
-        $formEnfant = $this->createForm(EnfantType::class, $enfant);
-        $formEnfant->handleRequest($request);
-        if ($formEnfant->isSubmitted()) {
-            if ($formEnfant->isValid()) {
-                # code...
-                $parents = $formEnfant->get("codeParent")->getData();
-                $photo = $formEnfant->get('photo')->getData();
-                $fileName = uniqid() . '.' . $photo->guessExtension();
-                //dump($fileName);
-                $photo->move('images/enfant', $fileName);
-                $enfant->setPhoto('images/enfant/' . $fileName);
-                $this->manager->persist($enfant);
-
-                if ($parents) {
-                    $parents = explode(',', $parents);
-                    foreach ($parents as $code) {
-                        $parent = $this->userRepo->findOneBy(['code' => $code]);
-                        if ($parent) {
-                            # code...
-                            $parent->addEnfant($enfant);
-                            $this->manager->persist($parent);
-                        } else {
-                            $this->addFlash("error", "code $code not exite");
-                        }
-                    }
-
-                    # code...
-                }
-                $this->manager->flush();
-                $this->addFlash('success', $enfant->getNom() . " Ajouter");
-                return $this->redirectToRoute('super');
-                //dump($enfant, explode(',', $parents), $parents);
-            } else {
-                $this->addFlash("error", "erreur de formulaire");
-            }
-        }
+        
         return $this->render('super/index.html.twig', [
             'classForm' => $form->createView(),
             'salles' => $ecole->getSalles(),
             'gardienFrom' => $gardienForm->createView(),
-            'enfantForm' => $formEnfant->createView()
         ]);
     }
     /**

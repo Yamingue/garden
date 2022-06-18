@@ -3,12 +3,15 @@
 namespace App\Controller\Supervisor;
 
 use App\Entity\Gardienne;
+use App\Form\GardienneType;
 use App\Form\GardienneEditeType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+#[Route('/super/gardienne')]
 class GardienneController extends AbstractController
 {
     private $manager;
@@ -18,9 +21,50 @@ class GardienneController extends AbstractController
         $this->manager = $doctrine->getManager();
     }
 
-    /**
-     * @Route("/super/gardienne/delete/{id}", name="delete_gardienne")
-     */
+    #[Route('/', name:'index_gardienne')]
+    public function index(Request $request, UserPasswordHasherInterface $hasher)
+    {
+        # code...
+        $ecole = $this->getUser();
+        $gardienne = new Gardienne();
+        $gardienne->setEcole($ecole);
+
+        //creation de gardienne
+        $gardienForm = $this->createForm(GardienneType::class, $gardienne);
+        $gardienForm->handleRequest($request);
+        if ($gardienForm->isSubmitted()) {
+            if ($gardienForm->isValid()) {
+                # code...
+                $photo = $gardienForm->get('photo')->getData();
+                $fileName = uniqid() . '.' . $photo->guessExtension();
+                //dump($fileName);
+                $photo->move('images/gardienne', $fileName);
+                $gardienne->setPhoto('images/gardienne/' . $fileName);
+
+                $em = $this->manager;
+                $salles = $gardienne->getSalles();
+                $salles->addGardienne($gardienne);
+                $gardienne->setPassword($hasher->hashPassword($gardienne,$gardienne->getPassword()));
+                $em->persist($gardienne);
+                $em->persist($salles);
+                $em->flush();
+
+                # code...
+                dump($gardienne);
+                $this->addFlash('success', " Gardienne Ajouter");
+                return $this->redirectToRoute('index_gardienne');
+            } else {
+                $this->addFlash('error', "errer");
+            }
+        } // fin de creation de gardienne
+
+
+        return $this->render('super_gardienne/index.html.twig',[
+            'gardienFrom' => $gardienForm->createView(),
+        ]);
+    }
+
+    #[Route('/delete/{id}', name:'delete_gardienne')]
     public function delete(Gardienne $gardienne = null)
     {
         //Liste des gardienne de l'ecole
@@ -39,7 +83,7 @@ class GardienneController extends AbstractController
         } else {
             $this->addFlash('error', "Gardienne ne fait n'est pas de l'ecole");
         }
-        return $this->redirectToRoute("super");
+        return $this->redirectToRoute("index_gardienne");
     }
 
     /**
@@ -65,13 +109,13 @@ class GardienneController extends AbstractController
                 $this->manager->persist($gardienne);
                 $this->manager->flush();
                 $this->addFlash('success', "Garienne " . $gardienne . " modifier");
-                return $this->redirectToRoute('super');
+                return $this->redirectToRoute('index_gardienne');
             }else{
                 $this->addFlash('error', "error in form ");
             }
         }
 
-        return $this->render('form.html.twig', [
+        return $this->render('super_gardienne/edite.html.twig', [
             'form' => $form->createView(),
             'name' => $gardienne
         ]);
