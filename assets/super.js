@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import reactDom from 'react-dom';
 import '@fortawesome/fontawesome-free/js/all.js'
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
-import 'mdb-ui-kit/js/mdb.min.js'
+// import './styles/app.css';
+//import 'mdb-ui-kit/js/mdb.min.js'
+//import 'bootstrap/dist/js/bootstrap.min.js'
+//import './styles/super.scss'
 
 // start the Stimulus application
 import './bootstrap';

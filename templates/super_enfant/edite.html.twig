@@ -1,11 +1,9 @@
-{% extends "base.html.twig" %}
-{% block nav %}
-    {% include "includes/super_nav.html.twig" %}
-{% endblock %}
+{% extends "super.html.twig" %}
 {% block body %}
+{{ dump() }}
 <div class="container">
     <div class="row">
-        <div class="col-sm-7 mx-auto">
+        <div class="col-sm-10 mx-auto">
             <div class="card mt-2 border mb-2">
                 <div class="card-header">
                     {{name}}

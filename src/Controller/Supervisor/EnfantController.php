@@ -99,7 +99,8 @@ class EnfantController extends AbstractController
 
         return $this->render('super_enfant/edite.html.twig', [
             'form' => $form->createView(),
-            'name' => $enfant->getNom()
+            'name' => $enfant->getNom(),
+            'enfant' =>$enfant
         ]);
     }
 }
