@@ -14,6 +14,7 @@ let timer = setInterval(() => {
 }, 60_000)
 useEffect(() => {
     if (data) {
+        console.log(data)
         setInterval(() => {
             refetch()
         }, 15_000)

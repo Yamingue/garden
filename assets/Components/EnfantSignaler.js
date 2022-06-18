@@ -13,6 +13,7 @@ const EnfantSignaler = ({ data }) => {
     }
     const [curentColor, setCurrentColor] = useState(color.danger);
     const [time, setTime] = useState(getPourcent(data.restTime))
+    console.log(data)
     useEffect(() => {
         console.log(time)
         if (time > 40) {

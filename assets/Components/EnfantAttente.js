@@ -6,6 +6,7 @@ import './parking.css'
 const EnfantAttente = ({ data, route = '/super/notif/' }) => {
     const [minute, setMinute] = useState(0)
     const elRef = useRef()
+    console.log(data)
     useEffect(function () {
         let date = new Date(data.updateAt)
         date = date.getTime();

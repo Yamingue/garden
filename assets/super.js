@@ -69,7 +69,7 @@ const Supervisor = (props) => {
                         <div className='card-body'>
                             <div className='row'>
                                 {data.map(el => <div className='col-sm-3 mb-2'>
-                                    <EnfantSignaler data={el} key={el.time} />
+                                    <EnfantSignaler data={el} key={el.updateAt} />
                                 </div>)}
 
                             </div>
