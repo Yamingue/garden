@@ -3,17 +3,67 @@
 {% block title %}Update class{% endblock %}
 
 {% block body %}
-<div class="container mt-2">
-    <div class="row">
-        <div class="card col-sm-5 mx-auto">
-            <div class="card-body">
-                {{ form_start(form)}}
-                {{ form_widget(form)}}
-                <button type="submit" class="btn btn-primary btn-sm" style="background-color: #55acee;" href="#!" role="button">
-                    <i class="fa fa-refresh me-2"></i>
-                    Update
-                </button>
-                {{ form_end(form)}}
+<button type="button" class="btn btn-sm btn-gradient-primary mb-2" data-bs-toggle="modal" data-bs-target="#superClass">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+      </svg> 
+      Add classroom
+</button>
+<table class="table table-striped table-hover table-bordered ">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Label</th>
+            <th scope="col">Babysitters</th>
+            <th scope="col">Children</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in salles %}
+        <tr>
+            <td>{{s.nom}}</td>
+            <td>
+                {% for g in s.gardiennes %}
+                {% if loop.index0 == 0 %}{{ g }}{% else %},{{ g }}{% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                Jean, Jack, paule,
+            </td>
+            <td>
+                <a href="{{ path('edite_super_class',{id:s.id})}}" class="btn btn-sm btn-gradient-warning">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{{ path('delete_super_class',{id:s.id})}}" class="btn btn-sm btn-gradient-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+<!-- Modal -->
+<div class="modal top fade" id="superClass" tabindex="-1" aria-labelledby="superClass" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card border border-primary">
+                    <div class="card-header">
+                        Add classroom
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(classForm)}}
+                        {{ form_widget(classForm)}}
+                        <button type="submit" class="btn btn-success"> Add <i
+                                class="fas fa-plus ms-1"></i></button>
+                        {{ form_end(classForm)}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

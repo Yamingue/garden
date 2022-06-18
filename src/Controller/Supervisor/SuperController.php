@@ -62,44 +62,11 @@ class SuperController extends AbstractController
                 $this->addFlash('error', "errer");
             }
         }
-        //fin de creation de salle
-        $gardienne = new Gardienne();
-        $gardienne->setEcole($ecole);
-
-        //creation de gardienne
-        $gardienForm = $this->createForm(GardienneType::class, $gardienne);
-        $gardienForm->handleRequest($request);
-        if ($gardienForm->isSubmitted()) {
-            if ($gardienForm->isValid()) {
-                # code...
-                $photo = $gardienForm->get('photo')->getData();
-                $fileName = uniqid() . '.' . $photo->guessExtension();
-                //dump($fileName);
-                $photo->move('images/gardienne', $fileName);
-                $gardienne->setPhoto('images/gardienne/' . $fileName);
-
-                $em = $this->manager;
-                $salles = $gardienne->getSalles();
-                $salles->addGardienne($gardienne);
-                $gardienne->setPassword($hasher->hashPassword($gardienne,$gardienne->getPassword()));
-                $em->persist($gardienne);
-                $em->persist($salles);
-                $em->flush();
-
-                # code...
-                dump($gardienne);
-                $this->addFlash('success', " Gardienne Ajouter");
-                return $this->redirectToRoute('super');
-            } else {
-                $this->addFlash('error', "errer");
-            }
-        } // fin de creation de gardienne
-
+        
         
         return $this->render('super/index.html.twig', [
             'classForm' => $form->createView(),
             'salles' => $ecole->getSalles(),
-            'gardienFrom' => $gardienForm->createView(),
         ]);
     }
     /**

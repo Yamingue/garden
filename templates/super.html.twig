@@ -91,6 +91,12 @@
             <li class="nav-item {% if app.request.attributes.get('_route') == 'super' %}active{% endif %}">
               <a class="nav-link" href="{{ path('super') }}">
                 <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-view-dashboard menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item {% if 'class' in app.request.attributes.get('_route') %}active{% endif %}">
+              <a class="nav-link" href="{{ path('index_super_class') }}">
+                <span class="menu-title">Classroom</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
@@ -115,7 +121,7 @@
             </li>
             <li class="nav-item {% if 'gardienne' in app.request.attributes.get('_route')  %}active{% endif %}">
               <a class="nav-link" href="{{ path('index_gardienne') }}">
-                <span class="menu-title">Gardienne</span>
+                <span class="menu-title">Babysitter</span>
                 <i class="mdi mdi-account-multiple menu-icon"></i>
               </a>
             </li>
@@ -156,7 +162,7 @@
           <!-- content-wrapper ends -->
           <!-- partial:/partials/_footer.html -->
           <footer class="footer">
-              {{ dump(app.request.attributes.get('_route')) }}
+              {# {{ dump(app.request.attributes.get('_route')) }} #}
           </footer>
           <!-- partial -->
         </div>
