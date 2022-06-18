@@ -1,187 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
-    {% block stylesheets %}
-{{ encore_entry_link_tags('super') }}
-{% endblock %}
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}{{ app.user }} | Home{% endblock %}</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- End layout styles -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  {% block stylesheets %}
+  {{ encore_entry_link_tags('super') }}
+  {% endblock %}
 
 
-{% block javascripts %}
-{{ encore_entry_script_tags('super') }}
-{% endblock %}
-  </head>
-  <body>
-    <div class="container-scroller">
-      <!-- partial:/partials/_navbar.html -->
-      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="/index.html"><img src="{{ asset('images/ecole/' ~ app.user.logo) }}" alt="logo {{ app.user.name}}" /></a>
-          <a class="navbar-brand brand-logo-mini" href="/index.html"><img src="{{ asset('images/ecole/' ~ app.user.logo) }}" alt="logo {{ app.user.name}}" /></a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-stretch">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
-          <div class="search-field d-none d-md-block">
-            <form class="d-flex align-items-center h-100" action="#">
-              <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+  {% block javascripts %}
+  {{ encore_entry_script_tags('super') }}
+  {% endblock %}
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:/partials/_navbar.html -->
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="/index.html"><img src="{{ asset('images/ecole/' ~ app.user.logo) }}"
+            alt="logo {{ app.user.name}}" /></a>
+        <a class="navbar-brand brand-logo-mini" href="/index.html"><img
+            src="{{ asset('images/ecole/' ~ app.user.logo) }}" alt="logo {{ app.user.name}}" /></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="mdi mdi-menu"></span>
+        </button>
+        <div class="search-field d-none d-md-block">
+          <form class="d-flex align-items-center h-100" action="#">
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <i class="input-group-text border-0 mdi mdi-magnify"></i>
               </div>
-            </form>
-          </div>
-          <ul class="navbar-nav navbar-nav-right">
-            {# <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="nav-profile-img">
-                  <img src="/assets/images/faces/face1.jpg" alt="image">
-                  <span class="availability-status online"></span>
-                </div>
-                <div class="nav-profile-text">
-                  <p class="mb-1 text-black">David Greymaax</p>
-                </div>
-              </a>
-              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
-              </div>
-            </li> #}
-            <li class="nav-item d-none d-lg-block full-screen-link">
-              <a class="nav-link">
-                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-              </a>
-            </li>
-            <li class="nav-item nav-logout d-none d-lg-block">
-              <a class="nav-link" href="#">
-                <i class="mdi mdi-power"></i>
-              </a>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="mdi mdi-menu"></span>
-          </button>
+              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+            </div>
+          </form>
         </div>
+        <ul class="navbar-nav navbar-nav-right">
+          {# <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <div class="nav-profile-img">
+                <img src="/assets/images/faces/face1.jpg" alt="image">
+                <span class="availability-status online"></span>
+              </div>
+              <div class="nav-profile-text">
+                <p class="mb-1 text-black">David Greymaax</p>
+              </div>
+            </a>
+            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="#">
+                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+            </div>
+          </li> #}
+          <li class="nav-item d-none d-lg-block full-screen-link">
+            <a class="nav-link">
+              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-logout d-none d-lg-block">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-power"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:/partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item {% if app.request.attributes.get('_route') == 'super' %}active{% endif %}">
+            <a class="nav-link" href="{{ path('super') }}">
+              <span class="menu-title">Dashboard</span>
+              <i class="mdi mdi-view-dashboard menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item {% if 'class' in app.request.attributes.get('_route') %}active{% endif %}">
+            <a class="nav-link" href="{{ path('index_super_class') }}">
+              <span class="menu-title">Classroom</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+          </li>
+          {# <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+              aria-controls="ui-basic">
+              <span class="menu-title">Basic UI Elements</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div>
+          </li> #}
+          <li class="nav-item {% if 'enfant' in app.request.attributes.get('_route') %}active{% endif %}">
+            <a class="nav-link" href="{{ path('index_enfant') }}">
+              <span class="menu-title">Children</span>
+              <i class="mdi mdi-baby menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item {% if 'gardienne' in app.request.attributes.get('_route')  %}active{% endif %}">
+            <a class="nav-link" href="{{ path('index_gardienne') }}">
+              <span class="menu-title">Babysitter</span>
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('super_parking') }}">
+              <span class="menu-title">Parking</span>
+              <i class="mdi mdi-parking menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('super_onway') }}">
+              <span class="menu-title">On way</span>
+              <i class="mdi mdi-highway menu-icon"></i>
+            </a>
+          </li>
+        </ul>
       </nav>
       <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:/partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
-            <li class="nav-item {% if app.request.attributes.get('_route') == 'super' %}active{% endif %}">
-              <a class="nav-link" href="{{ path('super') }}">
-                <span class="menu-title">Dashboard</span>
-                <i class="mdi mdi-view-dashboard menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item {% if 'class' in app.request.attributes.get('_route') %}active{% endif %}">
-              <a class="nav-link" href="{{ path('index_super_class') }}">
-                <span class="menu-title">Classroom</span>
-                <i class="mdi mdi-home menu-icon"></i>
-              </a>
-            </li>
-            {# <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Basic UI Elements</span>
-                <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-              </a>
-              <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html">Buttons</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html">Typography</a></li>
-                </ul>
-              </div>
-            </li> #}
-            <li class="nav-item {% if 'enfant' in app.request.attributes.get('_route') %}active{% endif %}">
-              <a class="nav-link" href="{{ path('index_enfant') }}">
-                <span class="menu-title">Children</span>
-                <i class="mdi mdi-baby menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item {% if 'gardienne' in app.request.attributes.get('_route')  %}active{% endif %}">
-              <a class="nav-link" href="{{ path('index_gardienne') }}">
-                <span class="menu-title">Babysitter</span>
-                <i class="mdi mdi-account-multiple menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ path('super_parking') }}">
-                <span class="menu-title">Parking</span>
-                <i class="mdi mdi-parking menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ path('super_onway') }}">
-                <span class="menu-title">On way</span>
-                <i class="mdi mdi-highway menu-icon"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="container pt-2">
-              {% for message in app.flashes('error') %}
-              <div class="alert alert-danger" role="alert">
-                  {{message}}
-              </div>
-              {% endfor %}
-      
-              {% for message in app.flashes('success') %}
-              <div class="alert alert-success" role="alert">
-                  {{message}}
-                </div>
-              {% endfor %}
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="container pt-2">
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger" role="alert">
+              {{message}}
+            </div>
+            {% endfor %}
+
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+              {{message}}
+            </div>
+            {% endfor %}
           </div>
-            {% block body %}
-              
-            {% endblock %}
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:/partials/_footer.html -->
-          <footer class="footer">
-              {# {{ dump(app.request.attributes.get('_route')) }} #}
-          </footer>
-          <!-- partial -->
+          {% block body %}
+
+          {% endblock %}
         </div>
-        <!-- main-panel ends -->
+        <!-- content-wrapper ends -->
+        <!-- partial:/partials/_footer.html -->
+        <footer class="footer">
+          {# {{ dump(app.request.attributes.get('_route')) }} #}
+        </footer>
+        <!-- partial -->
       </div>
-      <!-- page-body-wrapper ends -->
+      <!-- main-panel ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="/assets/js/off-canvas.js"></script>
-    <script src="/assets/js/hoverable-collapse.js"></script>
-    <script src="/assets/js/misc.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <!-- End custom js for this page -->
-  </body>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="/assets/js/off-canvas.js"></script>
+  <script src="/assets/js/hoverable-collapse.js"></script>
+  <script src="/assets/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <!-- End custom js for this page -->
+</body>
+
 </html>

@@ -2,15 +2,12 @@
 
 {% block title %}{{ app.user }} | Home{% endblock %}
 
-{% block nav %}
-    {% include "includes/super_nav.html.twig" %}
-{% endblock %}
 {% block body %}
 <div class="container mt-2">
     <section>
         <div class="row">
             <div class="col-xl-4 col-sm-6 col-12 mb-4">
-                <div class="card" data-bs-toggle="modal" data-bs-target="#superClass" style="cursor: pointer;">
+                <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
@@ -25,7 +22,7 @@
                 </div>
             </div>
             <div class="col-xl-4 col-sm-6 col-12 mb-4">
-                <div class="card" data-bs-toggle="modal" data-bs-target="#superGardienne" style="cursor: pointer;">
+                <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
@@ -74,7 +71,6 @@
         </div>
     </section>
 </div>
-{% include "includes/superCalss_modal.html.twig" %}
 <div id="super"></div>
 
 {% endblock %}

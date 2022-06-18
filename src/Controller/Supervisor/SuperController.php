@@ -36,36 +36,12 @@ class SuperController extends AbstractController
     /**
      * @Route("/", name="super")
      */
-    public function index(Request $request, Ecole $ecole = null,UserPasswordHasherInterface $hasher): Response
+    public function index(): Response
     {
 
-        if (!$ecole) {
-            $ecole = $this->getUser();
-            # code...
-        }
-
-        //debut de creation de salle
         $ecole = $this->getUser();
-        $salle = new Salle();
-        $salle->setEcole($ecole);
-        $form = $this->createForm(SalleType::class, $salle);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->isValid()) {
-                //dd($salle);
-                $em =  $this->manager;
-                $em->persist($salle);
-                $em->flush();
-                $this->addFlash('success', "Salle bien ajouter");
-                return $this->redirectToRoute("super");
-            } else {
-                $this->addFlash('error', "errer");
-            }
-        }
-        
-        
+           
         return $this->render('super/index.html.twig', [
-            'classForm' => $form->createView(),
             'salles' => $ecole->getSalles(),
         ]);
     }
