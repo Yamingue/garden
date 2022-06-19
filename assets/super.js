@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import reactDom from 'react-dom';
-import '@fortawesome/fontawesome-free/js/all.js'
-// any CSS you import will output into a single css file (app.css in this case)
-// import './styles/app.css';
-//import 'mdb-ui-kit/js/mdb.min.js'
-//import 'bootstrap/dist/js/bootstrap.min.js'
-//import './styles/super.scss'
 
-// start the Stimulus application
-import './bootstrap';
+//import css relier au template
+import './assets/vendors/css/vendor.bundle.base.css'
+import './assets/css/style.css'
+import './assets/vendors/mdi/css/materialdesignicons.min.css'
+
+//import du js relier au template
+import './assets/vendors/js/vendor.bundle.base'
+import './assets/js/off-canvas'
+import './assets/js/hoverable-collapse'
+import './assets/js/misc'
+
 import EnfantAttente from './Components/EnfantAttente';
 import EnfantSignaler from './Components/EnfantSignaler';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
