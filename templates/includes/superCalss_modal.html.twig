@@ -10,7 +10,7 @@
                 <!-- Buttons trigger collapse -->
                 <a class="btn btn-primary mb-2" data-bs-toggle="collapse" href="#collapseSalle" role="button"
                     aria-expanded="false" aria-controls="collapseSalle">
-                    Ajouter une salle
+                    {% trans %}Add classroom{% endtrans %}
                 </a>
 
                 <!-- Collapsed content -->
@@ -19,12 +19,12 @@
                         <div class="col-sm-6 mx-auto">
                             <div class="card border border-primary">
                                 <div class="card-header">
-                                    Ajouter une salle
+                                    {% trans %}Add classroom{% endtrans %}
                                 </div>
                                 <div class="card-body">
                                     {{ form_start(classForm)}}
                                     {{ form_widget(classForm)}}
-                                    <button type="submit" class="btn btn-success"> Ajouter <i
+                                    <button type="submit" class="btn btn-success">{% trans %}Ajouter{% endtrans %}<i
                                             class="fas fa-plus ms-1"></i></button>
                                     {{ form_end(classForm)}}
                                 </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
+                    {% trans %}Close{% endtrans %}
                 </button>
             </div>
         </div>

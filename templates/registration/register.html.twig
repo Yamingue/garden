@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{% trans %}Registration{% endtrans %}{% endblock %}
 
 {% block body %}
 
@@ -29,11 +29,11 @@
                     </div>
                     {{ form_row(registrationForm.agreeTerms) }}
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Register{% endtrans %}</button>
                     </div>
                     <div class="col-12">
-                        <p class="text-center mt-5">Have an account?
-                            <a href="{{ path("parent_login") }}" class="text-primary">Sign In</a>
+                        <p class="text-center mt-5">{% trans %}Have an account?{% endtrans %}
+                            <a href="{{ path("parent_login") }}" class="text-primary">{% trans %}Sign In{% endtrans %}</a>
                         </p>
                     </div>
                 </div>

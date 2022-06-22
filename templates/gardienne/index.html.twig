@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GardienneController!{% endblock %}
+{% block title %} {% trans %}Hello{% endtrans %} {{ app.user }}{% endblock %}
 
 {% block stylesheets %}
 {{ encore_entry_link_tags('garden') }}

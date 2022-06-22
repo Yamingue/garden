@@ -71,7 +71,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About Solution</a>
+                            <a class="nav-link" href="#about">{% trans %}About Solution{% endtrans %}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#!">Flash tour</a>
@@ -80,7 +80,7 @@
                             <a class="nav-link" href="#!">Flash tour pro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!">Team</a>
+                            <a class="nav-link" href="#!">{% trans %}Team{% endtrans %}</a>
                         </li>
                     </ul>
                 </div>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">About Flash tour</h5>
+                            <h5 class="card-title">{% trans %}About{% endtrans %} Flash tour</h5>
                             <p class="card-text">
                                 This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.
@@ -128,8 +128,8 @@
             <div class="card  mt-2 mb-2">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <span style="color: #a065f3;">Flash</span><span style="color: #5ab2ff;">Tour</span> for
-                        parent
+                        <span style="color: #a065f3;">Flash</span><span style="color: #5ab2ff;">Tour</span> {% trans %}for
+                        parent{% endtrans %}
                     </h5>
                     <p class="card-text">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti eos fuga, ipsam adipisci
@@ -144,7 +144,7 @@
                         </a>
                         <a href="/parent" class="btn btn-secondary">
                             <i class="fa-solid fa-globe"></i>
-                            Acces on web</a>
+                            {% trans %}Acces on web{% endtrans %}</a>
                     </div>
 
                 </div>
@@ -168,7 +168,7 @@
                         </a>
                         <a href="/super" class="btn btn-secondary">
                             <i class="fa-solid fa-globe"></i>
-                            Acces on web</a>
+                            {% trans %}Acces on web{% endtrans %}</a>
                     </div>
                    
 
@@ -177,7 +177,7 @@
         </div>
     </section>
     {% include "home/price.html.twig" %}
-    <h4 class="mb-4 text-center"><strong>Contact Us</strong></h4>
+    <h4 class="mb-4 text-center"><strong>{% trans %}Contact Us{% endtrans %}</strong></h4>
     <section draggable="false" class="container pt-5" data-v-271253ee="">
         <section class="mb-10 text-center">
             <style>
@@ -263,7 +263,7 @@
                                 </div>
                                 <!-- Submit button -->
                                 <button type="submit" class="btn  btn-primary btn-block" data-builder-edit="button"
-                                    data-builder-name="button1" aria-controls="#picker-editor">Send</button>
+                                    data-builder-name="button1" aria-controls="#picker-editor">{% trans %}Send{% endtrans %}</button>
                             </form>
                         </div>
                     </div>

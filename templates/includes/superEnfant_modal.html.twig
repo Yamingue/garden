@@ -4,14 +4,14 @@
     <div class="modal-dialog modal-fullscreen ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="superEnfant">List des Salles</h5>
+                <h5 class="modal-title" id="superEnfant">{% trans %}Children list{% endtrans %}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Buttons trigger collapse -->
                 <a class="btn btn-primary mb-2" data-bs-toggle="collapse" href="#collapseSalle" role="button"
                     aria-expanded="false" aria-controls="collapseSalle">
-                    Ajouter un enfant
+                    {% trans %}Add child{% endtrans %}
                 </a>
 
                 <!-- Collapsed content -->
@@ -20,12 +20,12 @@
                         <div class="col-sm-6 mx-auto">
                             <div class="card border border-primary">
                                 <div class="card-header">
-                                    Ajouter une salle
+                                    {% endtrans %}Add classroom{% endtrans %}
                                 </div>
                                 <div class="card-body">
                                     {{ form_start(enfantForm)}}
                                     {{ form_widget(enfantForm)}}
-                                    <button type="submit" class="btn btn-success"> Ajouter <i
+                                    <button type="submit" class="btn btn-success"> {% trans %}Add{% endtrans %} <i
                                             class="fas fa-plus ms-1"></i></button>
                                     {{ form_end(enfantForm)}}
                                 </div>

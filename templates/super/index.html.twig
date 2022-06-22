@@ -1,6 +1,6 @@
 {% extends 'super.html.twig' %}
 
-{% block title %}{{ app.user }} | Home{% endblock %}
+{% block title %}{{ app.user }} | {% trans %}Home{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container mt-2">
@@ -12,7 +12,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h3 class="text-danger">{{ app.user.salles |length }}</h3>
-                                <p class="mb-0">Salle de Class</p>
+                                <p class="mb-0">{% trans %}Classroom{% endtrans %}</p>
                             </div>
                             <div class="align-self-center">
                                 <i class="fas fa-city text-danger fa-3x"></i>
@@ -27,7 +27,7 @@
                         <div class="d-flex justify-content-between px-md-1">
                             <div>
                                 <h3 class="text-success">{{ app.user.gardiennes |length }}</h3>
-                                <p class="mb-0">Gardiennes</p>
+                                <p class="mb-0">{% trans %}Babysitter{% endtrans %}</p>
                             </div>
                             <div class="align-self-center">
                                 <i class="far fa-user text-success fa-3x"></i>
@@ -44,7 +44,7 @@
                                 <h3 class="text-info">
                                     {{app.user.enfants|length}}
                                 </h3>
-                                <p class="mb-0">Enfants</p>
+                                <p class="mb-0">{% trans %}Enfants{% endtrans %}</p>
                             </div>
                             <div class="align-self-center">
                                 <i class="fas fa-baby text-info fa-3x"></i>

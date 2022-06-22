@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{% block title %}{{ app.user }} | Home{% endblock %}</title>
+  <title>{% block title %}{{ app.user }} | {% trans %}Home{% endtrans %} {% endblock %}</title>
   <!-- plugins:css -->
   {# <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
@@ -104,13 +104,13 @@
         <ul class="nav">
           <li class="nav-item {% if app.request.attributes.get('_route') == 'super' %}active{% endif %}">
             <a class="nav-link" href="{{ path('super') }}">
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">{% trans %}Dashboard{% endtrans %}</span>
               <i class="mdi mdi-view-dashboard menu-icon"></i>
             </a>
           </li>
           <li class="nav-item {% if 'class' in app.request.attributes.get('_route') %}active{% endif %}">
             <a class="nav-link" href="{{ path('index_super_class') }}">
-              <span class="menu-title">Classroom</span>
+              <span class="menu-title">{% trans %}Classroom{% endtrans %}</span>
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
@@ -130,31 +130,31 @@
           </li> #}
           <li class="nav-item {% if 'enfant' in app.request.attributes.get('_route') %}active{% endif %}">
             <a class="nav-link" href="{{ path('index_enfant') }}">
-              <span class="menu-title">Children</span>
+              <span class="menu-title">{% trans %}Children{% endtrans %}</span>
               <i class="mdi mdi-baby menu-icon"></i>
             </a>
           </li>
           <li class="nav-item {% if 'gardienne' in app.request.attributes.get('_route')  %}active{% endif %}">
             <a class="nav-link" href="{{ path('index_gardienne') }}">
-              <span class="menu-title">Babysitter</span>
+              <span class="menu-title">{% trans %}Babysitter{% endtrans %}</span>
               <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ path('super_parking') }}">
-              <span class="menu-title">Parking</span>
+              <span class="menu-title">{% trans %}Parking{% endtrans %}</span>
               <i class="mdi mdi-parking menu-icon"></i>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ path('super_onway') }}">
-              <span class="menu-title">On way</span>
+              <span class="menu-title">{% trans %}On way{% endtrans %}</span>
               <i class="mdi mdi-highway menu-icon"></i>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ path('super_profile') }}">
-              <span class="menu-title">Profile</span>
+              <span class="menu-title">{% trans %}Profile{% endtrans %}</span>
               <i class="mdi mdi-settings menu-icon"></i>
             </a>
           </li>

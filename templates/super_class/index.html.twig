@@ -12,10 +12,10 @@
 <table class="table table-striped table-hover table-bordered ">
     <thead class="table-dark">
         <tr>
-            <th scope="col">Label</th>
-            <th scope="col">Babysitters</th>
-            <th scope="col">Children</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{% trans %}Label{% endtrans %}</th>
+            <th scope="col">{% trans %}Babysitters{% endtrans %}</th>
+            <th scope="col">{% trans %}Children{% endtrans %}</th>
+            <th scope="col">{% trans %}Actions{% endtrans %}</th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +28,9 @@
                 {% endfor %}
             </td>
             <td>
-                Jean, Jack, paule,
+                {% for e in s.enfants %}
+                {% if loop.index0 == 0 %}{{ e.nom ~ ' ' ~ e.prenom }}{% else %},{{  e.nom ~ ' ' ~ e.prenom }}{% endif %}
+                {% endfor %}
             </td>
             <td>
                 <a href="{{ path('edite_super_class',{id:s.id})}}" class="btn btn-sm btn-gradient-warning">
