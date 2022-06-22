@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import reactDom from 'react-dom';
 
+var jQuery = require('jquery')
+global.$ = jQuery;
+global.jQuery = jQuery;
+
 //import css relier au template
 import './assets/vendors/css/vendor.bundle.base.css'
 import './assets/css/style.css'
