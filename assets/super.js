@@ -16,7 +16,6 @@ import './assets/js/off-canvas'
 import './assets/js/hoverable-collapse'
 import './assets/js/misc'
 
-import EnfantAttente from './Components/EnfantAttente';
 import EnfantSignaler from './Components/EnfantSignaler';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import ParkingOnlySuper from './Components/parkingOnlySuper';
