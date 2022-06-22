@@ -15,10 +15,13 @@
 <div class="grid-margin stretch-card">
     <div class="card">
         <div class="card-header">
-            Change Password
+            {% trans %}Change Password{% endtrans %}
         </div>
         <div class="card-body">
-            {{ form(passform) }}
+            {{ form_start(passform) }}
+            {{ form_widget(passform) }}
+            <button type="submit" class="btn btn-gradient-primary">{% trans %}Change password{% endtrans %}</button>
+            {{ form_end(passform) }}
         </div>
     </div>
 </div>
