@@ -31,7 +31,7 @@ class EnfantEditType extends AbstractType
         ->add('codeParent',TextType::class,[
             'mapped'=>false,
             'required'=>false,
-            'label'=>"Code parents (separer par des virgule s'il y'a plusieur)"
+            'label'=>"parents codes (separated by comma if you have many)"
         ])
         ;
     }
