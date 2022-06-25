@@ -32,7 +32,7 @@ class SuperClassController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isValid()) {
                 //dd($salle);
-                $em =  $this->manager;
+                $em =  $this->em;
                 $em->persist($salle);
                 $em->flush();
                 $this->addFlash('success', "Salle bien ajouter");
