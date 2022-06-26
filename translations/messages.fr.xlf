@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="3xp5R9Y" resname="not exite">
+        <source>not exite</source>
+        <target>Non disponible</target>
+      </trans-unit>
+      <trans-unit id="n9coxmy" resname="Add">
+        <source>Add</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="QoEwOI4" resname="Form error">
+        <source>Form error</source>
+        <target>Erreur sur le formulaire</target>
+      </trans-unit>
+      <trans-unit id="tEv2sZc" resname="Chid delete">
+        <source>Chid delete</source>
+        <target>Enfant suprimer</target>
+      </trans-unit>
+      <trans-unit id="1sei760" resname="The Child is not part of this school">
+        <source>The Child is not part of this school</source>
+        <target>L'Enfant ne fait pas partie de cette école</target>
+      </trans-unit>
+      <trans-unit id="5lAz8XS" resname="Edit successfully">
+        <source>Edit successfully</source>
+        <target>Modifier avec succès</target>
+      </trans-unit>
+      <trans-unit id="exW1c8N" resname="Error in form">
+        <source>Error in form</source>
+        <target>Erreur sur le formulaire</target>
+      </trans-unit>
+      <trans-unit id="1Sc1cq4" resname="Babysitter Add">
+        <source>Babysitter Add</source>
+        <target>Baby-sitter ajouter</target>
+      </trans-unit>
+      <trans-unit id="VKDowX6" resname="Error">
+        <source>Error</source>
+        <target>Erreur</target>
+      </trans-unit>
+      <trans-unit id="SVDbiyu" resname="Babysitter delete">
+        <source>Babysitter delete</source>
+        <target>Baby-sitter effacer</target>
+      </trans-unit>
+      <trans-unit id="N.V6ffx" resname="Babysitter is not part of this daycare">
+        <source>Babysitter is not part of this daycare</source>
+        <target>La baby-sitter ne fait pas partie de cette garderie</target>
+      </trans-unit>
+      <trans-unit id="F7S_uDF" resname="Edite">
+        <source>Edite</source>
+        <target>Editer</target>
+      </trans-unit>
+      <trans-unit id="TASHveU" resname="Room well add">
+        <source>Room well add</source>
+        <target>class bien ajouter</target>
+      </trans-unit>
+      <trans-unit id="WDqFhG4" resname="Errer">
+        <source>Errer</source>
+        <target>Erreur</target>
+      </trans-unit>
+      <trans-unit id="Sx_N3VI" resname="was update">
+        <source>was update</source>
+        <target>a été mis à jour</target>
+      </trans-unit>
+      <trans-unit id="EYXzfTO" resname="deleted">
+        <source>deleted</source>
+        <target>supprimé</target>
+      </trans-unit>
+      <trans-unit id="pMPtBKl" resname="done">
+        <source>done</source>
+        <target>fait</target>
+      </trans-unit>
+      <trans-unit id="8R.cv4q" resname="not allow">
+        <source>not allow</source>
+        <target>non permit</target>
+      </trans-unit>
+      <trans-unit id="DiImtSN" resname="Welcome">
+        <source>Welcome</source>
+        <target>Bienvenu(e)</target>
+      </trans-unit>
+      <trans-unit id="APnFM0V" resname="Ajouter">
+        <source>Ajouter</source>
+        <target>__Ajouter</target>
+      </trans-unit>
+      <trans-unit id="GF_NsyJ" resname="Hello">
+        <source>Hello</source>
+        <target>Bonjour</target>
+      </trans-unit>
+      <trans-unit id="SfucYPU" resname="About Solution">
+        <source>About Solution</source>
+        <target>À propos de la solution</target>
+      </trans-unit>
+      <trans-unit id="eotNt1b" resname="Welcome to Flash Tour">
+        <source>Welcome to Flash Tour</source>
+        <target>Bienvenue sur Flash Tour</target>
+      </trans-unit>
+      <trans-unit id="Tvyg0Qx" resname="About">
+        <source>About</source>
+        <target>À propos</target>
+      </trans-unit>
+      <trans-unit id="A0YB0FS" resname="for parent">
+        <source>for parent</source>
+        <target>pour les parents</target>
+      </trans-unit>
+      <trans-unit id="QNs8bwC" resname="Acces on web">
+        <source>Acces on web</source>
+        <target>Accès sur le Web</target>
+      </trans-unit>
+      <trans-unit id="F8oh24C" resname="for nursery">
+        <source>for nursery</source>
+        <target>pour crèche</target>
+      </trans-unit>
+      <trans-unit id="mLZwY8_" resname="Contact Us">
+        <source>Contact Us</source>
+        <target>Nous contacter</target>
+      </trans-unit>
+      <trans-unit id="J84dG.Q" resname="send">
+        <source>send</source>
+        <target>Envoyer</target>
+      </trans-unit>
+      <trans-unit id="3_lXg_3" resname="Pricing">
+        <source>Pricing</source>
+        <target>Tarification</target>
+      </trans-unit>
+      <trans-unit id="X3lT98m" resname="Parent">
+        <source>Parent</source>
+        <target>Parent</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="SmTWyEn" resname="Parking">
+        <source>Parking</source>
+        <target>Parking</target>
+      </trans-unit>
+      <trans-unit id="I1u5ja3" resname="On way">
+        <source>On way</source>
+        <target>En route</target>
+      </trans-unit>
+      <trans-unit id="E1repeW" resname="Add classroom">
+        <source>Add classroom</source>
+        <target>Ajouter une classe</target>
+      </trans-unit>
+      <trans-unit id="fZ63rLE" resname="Close">
+        <source>Close</source>
+        <target>Fermer</target>
+      </trans-unit>
+      <trans-unit id="M_Z5mmQ" resname="In parking">
+        <source>In parking</source>
+        <target>En stationnement</target>
+      </trans-unit>
+      <trans-unit id="iC3cy83" resname="Notifier">
+        <source>Notifier</source>
+        <target>Notifier</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="vSTb9IR" resname="Hi! Please confirm your email!">
+        <source>Hi! Please confirm your email!</source>
+        <target>Salut! Veuillez confirmer votre email!</target>
+      </trans-unit>
+      <trans-unit id="Ry3Xo6w" resname="Please confirm your email address by clicking the following link:">
+        <source>Please confirm your email address by clicking the following link:</source>
+        <target>Veuillez confirmer votre adresse e-mail en cliquant sur le lien suivant :</target>
+      </trans-unit>
+      <trans-unit id="ITaQX9q" resname="Confirm my Email">
+        <source>Confirm my Email</source>
+        <target>Confirmer mon e-mail</target>
+      </trans-unit>
+      <trans-unit id="87wG9uu" resname="This link will expire in">
+        <source>This link will expire in</source>
+        <target>Ce lien expirera dans</target>
+      </trans-unit>
+      <trans-unit id="x5Pg2aH" resname="Registration">
+        <source>Registration</source>
+        <target>Inscription</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>S'inscrire</target>
+      </trans-unit>
+      <trans-unit id="yvIJPn1" resname="Have an account?">
+        <source>Have an account?</source>
+        <target>avez vous un compte?</target>
+      </trans-unit>
+      <trans-unit id="vMC8yRQ" resname="Sign In">
+        <source>S'identifier</source>
+        <target>__Sign In</target>
+      </trans-unit>
+      <trans-unit id="wYmEDPf" resname="Log in">
+        <source>Log in</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="acVpEs4" resname="You are logged in as">
+        <source>You are logged in as</source>
+        <target>Vous êtes connecté en tant que</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="W1RwUzl" resname="Classroom">
+        <source>Classroom</source>
+        <target>Classe</target>
+      </trans-unit>
+      <trans-unit id="SIiidL7" resname="Babysitter">
+        <source>Babysitter</source>
+        <target>Baby-sitter</target>
+      </trans-unit>
+      <trans-unit id="U55D5R_" resname="Enfants">
+        <source>Enfants</source>
+        <target>Enfants</target>
+      </trans-unit>
+      <trans-unit id="ek3LZDN" resname="On Way">
+        <source>On Way</source>
+        <target>En route</target>
+      </trans-unit>
+      <trans-unit id="a5Q.Vt5" resname="On Parking">
+        <source>On Parking</source>
+        <target>en stationnement</target>
+      </trans-unit>
+      <trans-unit id="1ZpV1Cy" resname="Change information">
+        <source>Change information</source>
+        <target>Modifier les informations</target>
+      </trans-unit>
+      <trans-unit id="qUn0YjB" resname="Change Password">
+        <source>Change Password</source>
+        <target>Changer le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="P5yZH2O" resname="Change password">
+        <source>Change password</source>
+        <target>Changer le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="Z7aWRoY" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="NYOjWKW" resname="Children">
+        <source>Children</source>
+        <target>Enfants</target>
+      </trans-unit>
+      <trans-unit id="1pajW90" resname="Profile">
+        <source>Profile</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="bhV3SRp" resname="Update class">
+        <source>Update class</source>
+        <target>Mettre à jour la classe</target>
+      </trans-unit>
+      <trans-unit id="wcEAnT8" resname="Update">
+        <source>Update</source>
+        <target>Mise à jour</target>
+      </trans-unit>
+      <trans-unit id="DmY3P0X" resname="Label">
+        <source>Label</source>
+        <target>Label</target>
+      </trans-unit>
+      <trans-unit id="8ohuDPp" resname="Babysitters">
+        <source>Babysitters</source>
+        <target>Baby-sitters</target>
+      </trans-unit>
+      <trans-unit id=".4BZ3Gd" resname="Actions">
+        <source>Actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="mhxU9V5" resname="Picture">
+        <source>Picture</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="NAnvSYE" resname="full name">
+        <source>full name</source>
+        <target>nom et prénom</target>
+      </trans-unit>
+      <trans-unit id="Obc3DzC" resname="Age">
+        <source>Age</source>
+        <target>Age</target>
+      </trans-unit>
+      <trans-unit id="l.2ULEl" resname="Add child">
+        <source>Add child</source>
+        <target>Ajouter un enfant</target>
+      </trans-unit>
+      <trans-unit id="onE2OPq" resname="Add babysitter">
+        <source>Add babysitter</source>
+        <target>Ajouter baby-sitter</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="G4NthoB" resname="first name">
+        <source>first name</source>
+        <target>prénom</target>
+      </trans-unit>
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

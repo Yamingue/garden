@@ -17,20 +17,20 @@ class SuperClassController extends AbstractController
 {
     private $em;
     private $translator;
-    public $user;
     public function __construct(ManagerRegistry $man, TranslatorInterface $translator)
     {
         $this->em = $man->getManager();
         $this->translator = $translator;
-        /**@var Ecole */
-        $this->user = $this->getUser();
+      
     }
 
     #[Route("/{_locale<en|fr>}", defaults:['_locale'=>'en'],  name:'index_super_class')]
     public function index(Request $request)
     {
         //debut de creation de salle
-        $ecole = $this->user;
+
+        /**@var Ecole */
+        $ecole = $this->getUser();;
         $salle = new Salle();
         $salle->setEcole($ecole);
         $form = $this->createForm(SalleType::class, $salle);
@@ -48,7 +48,7 @@ class SuperClassController extends AbstractController
             }
         }
         return $this->render('super_class/index.html.twig',[
-            'salles' => $this->user->getSalles(),
+            'salles' => $ecole->getSalles(),
             'classForm'=>$form->createView()
         ]);
     }
@@ -63,7 +63,7 @@ class SuperClassController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $this->em->persist($salle);
             $this->em->flush();
-            $this->addFlash('success',$salle->getNom().$this->translator->trans(' was update'));
+            $this->addFlash('success',$salle->getNom().' '.$this->translator->trans('was update'));
             return $this->redirectToRoute('index_super_class');
         }
         return $this->render('super_class/edite.html.twig', [
@@ -78,7 +78,7 @@ class SuperClassController extends AbstractController
          
             $this->em->remove($salle);
             $this->em->flush();
-            $this->addFlash('success',$salle->getNom().$this->translator->trans(' deleted'));
+            $this->addFlash('success',$salle->getNom().' '.$this->translator->trans('deleted'));
         }
        
         return $this->redirectToRoute('index_super_class');

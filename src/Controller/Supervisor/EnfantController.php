@@ -56,7 +56,7 @@ class EnfantController extends AbstractController
                            $parent->addEnfant($enfant);
                            $this->manager->persist($parent);
                        } else {
-                           $this->addFlash("error",$code." ".$this->translator->trans(" not exite"));
+                           $this->addFlash("error",$code." ".$this->translator->trans("not exite"));
                        }
                    }
 

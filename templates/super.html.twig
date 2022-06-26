@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{  app.request.locale }}">
 
 <head>
   <!-- Required meta tags -->
@@ -45,7 +45,6 @@
 </head>
 
 <body>
-  {{ dump(app.request.attributes.get('_route') ends with 'class') }}
   <div class="container-scroller">
     <!-- partial:/partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
