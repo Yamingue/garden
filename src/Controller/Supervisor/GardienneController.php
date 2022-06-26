@@ -2,12 +2,14 @@
 
 namespace App\Controller\Supervisor;
 
+use App\Entity\Ecole;
 use App\Entity\Gardienne;
 use App\Form\GardienneType;
 use App\Form\GardienneEditeType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -15,13 +17,15 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class GardienneController extends AbstractController
 {
     private $manager;
+    private $translator;
 
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine,TranslatorInterface $translator)
     {
         $this->manager = $doctrine->getManager();
+        $this->translator =$translator;
     }
 
-    #[Route('/', name:'index_gardienne')]
+    #[Route("/{_locale<en|fr>}", defaults:['_locale'=>'en'], name:'index_gardienne')]
     public function index(Request $request, UserPasswordHasherInterface $hasher)
     {
         # code...
@@ -51,10 +55,10 @@ class GardienneController extends AbstractController
 
                 # code...
                 dump($gardienne);
-                $this->addFlash('success', " Gardienne Ajouter");
+                $this->addFlash('success', $this->translator->trans("Babysitter Add"));
                 return $this->redirectToRoute('index_gardienne');
             } else {
-                $this->addFlash('error', "errer");
+                $this->addFlash('error', $this->translator->trans("Error"));
             }
         } // fin de creation de gardienne
 
@@ -64,14 +68,15 @@ class GardienneController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name:'delete_gardienne')]
+    #[Route("/delete/{id}{_locale<en|fr>}", defaults:['_locale'=>'en'], name:'delete_gardienne')]
     public function delete(Gardienne $gardienne = null)
     {
         //Liste des gardienne de l'ecole
         $g_ecole = [];
-
+        /**@var Ecole */
+        $user = $this->getUser();
         //Convertion de l'array Collection en Array
-        foreach ($this->getUser()->getGardiennes() as $gar) {
+        foreach ($user->getGardiennes() as $gar) {
             # code...
             $g_ecole[] = $gar;
         }
@@ -79,16 +84,14 @@ class GardienneController extends AbstractController
         if (in_array($gardienne, $g_ecole)) {
             $this->manager->remove($gardienne);
             $this->manager->flush();
-            $this->addFlash('success', "Gardienne suprimer");
+            $this->addFlash('success',$this->translator->trans("Babysitter delete"));
         } else {
-            $this->addFlash('error', "Gardienne ne fait n'est pas de l'ecole");
+            $this->addFlash('error',$this->translator->trans("Babysitter is not part of this daycare"));
         }
         return $this->redirectToRoute("index_gardienne");
     }
 
-    /**
-     * @Route("/super/gardienne/edite/{id}", name="edite_gardienne")
-     */
+    #[Route("/super/gardienne/edite/{id}/{_locale<en|fr>}", defaults:['_locale'=>'en'],name:'edite_gardienne')]
     public function edite(Gardienne $gardienne, Request $request)
     {
         # code...
@@ -108,10 +111,10 @@ class GardienneController extends AbstractController
                 # code...
                 $this->manager->persist($gardienne);
                 $this->manager->flush();
-                $this->addFlash('success', "Garienne " . $gardienne . " modifier");
+                $this->addFlash('success', "'$gardienne'".$this->translator->trans("Edite"));
                 return $this->redirectToRoute('index_gardienne');
             }else{
-                $this->addFlash('error', "error in form ");
+                $this->addFlash('error',$this->translator->trans("Error in form"));
             }
         }
 

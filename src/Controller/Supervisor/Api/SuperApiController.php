@@ -39,9 +39,8 @@ class SuperApiController extends AbstractController
          }]);
     }
 
-    /**
-     * @Route("/notification", name="notification_super_api")
-     */
+
+    #[Route("/notification/{_locale<en|fr>}", defaults:['_locale'=>'en'],name:"notification_super_api")]
     public function notification(): Response
     {
         /**@var Ecole */
@@ -61,17 +60,14 @@ class SuperApiController extends AbstractController
          }]);
     }
 
-    /**
-     * @Route("/onway", name="onway_super_api")
-     */
+    #[Route("/onway/{_locale<en|fr>}", defaults:['_locale'=>'en'],name:"onway_super_api")]
     public function onWay()
     {
         $ecole = $this->getUser();
        return $this->json(SerializeNotification::collectionToArray($this->notificationRepository->findEcoleOnWay($ecole)));
     }
-    /**
-     * @Route("/parking", name="parking_super_api")
-     */
+    
+    #[Route("/parking/{_locale<en|fr>}", defaults:['_locale'=>'en'],name:"parking_super_api")]
     public function parking()
     {
         $ecole = $this->getUser();

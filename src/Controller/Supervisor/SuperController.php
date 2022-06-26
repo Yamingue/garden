@@ -10,14 +10,9 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Validator\Constraints\EqualTo;
 
 #[Route('/super')]
 class SuperController extends AbstractController
@@ -32,10 +27,10 @@ class SuperController extends AbstractController
     
     }
 
-    #[Route('/', name: 'super')]
+    #[Route("/{_locale<en|fr>}", defaults:['_locale'=>'en'], name: 'super')]
     public function index(): Response
     {
-
+        /**@var Ecole */
         $ecole = $this->getUser();
 
         return $this->render('super/index.html.twig', [
@@ -43,20 +38,20 @@ class SuperController extends AbstractController
         ]);
     }
 
-    #[Route('/onway', name: 'super_onway')]
+    #[Route("/onway/{_locale<en|fr>}", defaults:['_locale'=>'en'], name: 'super_onway')]
     public function onway()
     {
         return $this->render('super/onway.html.twig');
     }
 
-    #[Route('/parking', name: 'super_parking')]
+    #[Route("/parking/{_locale<en|fr>}", defaults:['_locale'=>'en'], name: 'super_parking')]
     public function parking()
     {
         return $this->render('super/parking.html.twig');
     }
 
 
-    #[Route('/profile', name: 'super_profile')]
+    #[Route("/profile/{_locale<en|fr>}", defaults:['_locale'=>'en'], name: 'super_profile')]
     public function profile(Request $request)
     {
         /**@var Ecole */

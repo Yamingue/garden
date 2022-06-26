@@ -2,6 +2,7 @@
 
 namespace App\Controller\Supervisor;
 
+use App\Entity\Ecole;
 use App\Entity\Enfant;
 use App\Form\EnfantType;
 use App\Form\EnfantEditType;
@@ -9,6 +10,7 @@ use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/super/enfant')]
@@ -16,13 +18,15 @@ class EnfantController extends AbstractController
 {
     private $manager;
     private $userRepo;
+    private $translator;
 
-    public function __construct(ManagerRegistry $doctrine, UserRepository $user)
+    public function __construct(ManagerRegistry $doctrine, UserRepository $user, TranslatorInterface $translator)
     {
         $this->manager = $doctrine->getManager();
         $this->userRepo = $user;
+        $this->translator = $translator;
     }
-    #[Route('/', name:'index_enfant')]
+    #[Route('/{_locale<en|fr>}', name:'index_enfant', defaults:['_locale'=>'en'])]
     public function index(Request $request)
     {
         $ecole = $this->getUser();
@@ -52,18 +56,18 @@ class EnfantController extends AbstractController
                            $parent->addEnfant($enfant);
                            $this->manager->persist($parent);
                        } else {
-                           $this->addFlash("error", "code $code not exite");
+                           $this->addFlash("error",$code." ".$this->translator->trans(" not exite"));
                        }
                    }
 
                    # code...
                }
                $this->manager->flush();
-               $this->addFlash('success', $enfant->getNom() . " Ajouter");
+               $this->addFlash('success', $enfant->getNom() .$this->translator->trans("Add"));
                return $this->redirectToRoute('index_enfant');
                //dump($enfant, explode(',', $parents), $parents);
            } else {
-               $this->addFlash("error", "erreur de formulaire");
+               $this->addFlash("error",$this->translator->trans("Form error"));
            }
        }
 
@@ -72,14 +76,15 @@ class EnfantController extends AbstractController
        ]);
     }
 
-    #[Route("/delete/{id}", name:'delete_enfant')]
+    #[Route("/delete/{id}/{_locale<en|fr>}", name:'delete_enfant', defaults:['_locale'=>'en'])]
     public function delete(Enfant $enfant = null)
     {
         //Liste des gardienne de l'ecole
         $e_ecole = [];
-
+        /**@var Ecole */
+        $user = $this->getUser();
         //Convertion de l'array Collection en Array
-        foreach ($this->getUser()->getEnfants() as $e) {
+        foreach ($user->getEnfants() as $e) {
             # code...
             $e_ecole[] = $e;
         }
@@ -94,15 +99,15 @@ class EnfantController extends AbstractController
 
             $this->manager->remove($enfant);
             $this->manager->flush();
-            $this->addFlash('success', "Enfant suprimer");
+            $this->addFlash('success', $this->translator->trans("Chid delete"));
         } else {
-            $this->addFlash('error', "Enfant ne fait n'est pas de l'ecole");
+            $this->addFlash('error',$this->translator->trans("The Child is not part of this school"));
         }
         return $this->redirectToRoute("super");
     }
 
  
-    #[Route("/edite/{id}", name:'edite_enfant')]
+    #[Route("/edite/{id}/{_locale<en|fr>}", defaults:['_locale'=>'en'], name:'edite_enfant')]
     public function edite(Enfant $enfant, Request $request)
     {
         # code...
@@ -130,18 +135,18 @@ class EnfantController extends AbstractController
                             $parent->addEnfant($enfant);
                             $this->manager->persist($parent);
                         } else {
-                            $this->addFlash("error", "code $code not exite");
+                            $this->addFlash("error",$code.$this->translator->trans("not exite"));
                         }
                     }
 
                     # code...
                 }
                 $this->manager->flush();
-                $this->addFlash('success', $enfant->getNom() . " Modifier");
+                $this->addFlash('success', $enfant->getNom() . $this->translator->trans("Edit successfully"));
                 return $this->redirectToRoute('super');
                 //dump($enfant, explode(',', $parents), $parents);
             } else {
-                $this->addFlash('error', "error in form ");
+                $this->addFlash('error', $this->translator->trans("Error in form"));
             }
         }
 

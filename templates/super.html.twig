@@ -45,13 +45,14 @@
 </head>
 
 <body>
+  {{ dump(app.request.attributes.get('_route') ends with 'class') }}
   <div class="container-scroller">
     <!-- partial:/partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo" href="{{ path('super') }}"><img src="{{ asset('images/ecole/' ~ app.user.logo) }}"
             alt="logo {{ app.user.name}}" /></a>
-        <a class="navbar-brand brand-logo-mini" href="/index.html"><img
+        <a class="navbar-brand brand-logo-mini" href="/super"><img
             src="{{ asset('images/ecole/' ~ app.user.logo) }}" alt="logo {{ app.user.name}}" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -108,7 +109,7 @@
               <i class="mdi mdi-view-dashboard menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item {% if 'class' in app.request.attributes.get('_route') %}active{% endif %}">
+          <li class="nav-item {% if app.request.attributes.get('_route') ends with 'class' %}active{% endif %}">
             <a class="nav-link" href="{{ path('index_super_class') }}">
               <span class="menu-title">{% trans %}Classroom{% endtrans %}</span>
               <i class="mdi mdi-home menu-icon"></i>
