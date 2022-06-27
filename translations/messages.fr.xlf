@@ -190,8 +190,8 @@
         <target>avez vous un compte?</target>
       </trans-unit>
       <trans-unit id="vMC8yRQ" resname="Sign In">
-        <source>S'identifier</source>
-        <target>__Sign In</target>
+        <source>Sign In</source>
+        <target>S'inscrire</target>
       </trans-unit>
       <trans-unit id="wYmEDPf" resname="Log in">
         <source>Log in</source>
@@ -275,6 +275,10 @@
       </trans-unit>
       <trans-unit id="mhxU9V5" resname="Picture">
         <source>Picture</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="mhxU9V51" resname="Photo">
+        <source>Photo</source>
         <target>Photo</target>
       </trans-unit>
       <trans-unit id="NAnvSYE" resname="full name">
