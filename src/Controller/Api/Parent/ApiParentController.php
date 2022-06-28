@@ -85,7 +85,8 @@ class ApiParentController extends AbstractController
             'prenom' => $currentUser->getPrenom(),
             'telephone' => $currentUser->getTelephone(),
             'enfants' => $enfants,
-            'photo' =>$currentUser->getPhoto()
+            'photo' =>$currentUser->getPhoto(),
+            'verify'=>$currentUser->isVerified()
         ];
         return $this->json($user);
     }
