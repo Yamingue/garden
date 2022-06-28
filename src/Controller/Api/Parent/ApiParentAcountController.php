@@ -2,10 +2,16 @@
 
 namespace App\Controller\Api\Parent;
 
+use App\Entity\ParentEmailVerification;
+use Exception;
 use App\Entity\User;
 use App\Form\ApiUserUpdateType;
+use App\Security\EmailVerifier;
+use Symfony\Component\Mime\Address;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,11 +24,13 @@ class ApiParentAcountController extends AbstractController
 {
     private $hacher;
     private $manager;
+    private EmailVerifier $emailVerifier;
 
-    public function __construct(UserPasswordHasherInterface  $hacher, ManagerRegistry $manager)
+    public function __construct(UserPasswordHasherInterface  $hacher, ManagerRegistry $manager, EmailVerifier $emailVerifier)
     {
         $this->hacher = $hacher;
         $this->manager = $manager->getManager();
+        $this->emailVerifier = $emailVerifier;
     }
 
     #[Route('/delete', name: 'app_parent_acount_delete')]
@@ -105,41 +113,75 @@ class ApiParentAcountController extends AbstractController
         }
         dd($content);
     }
-    
-    #[Route('/update/photo', methods:["POST"])]
+
+    #[Route('/update/photo', methods: ["POST"])]
     public function updatePhoto(Request $request, ManagerRegistry $registry)
     {
         /** @var UploadedFile */
         $file = $request->files->get('file');
         if ($file) {
             # code...
-            $extension =['PNG','JPG',"GIF"];
+            $extension = ['PNG', 'JPG', "GIF"];
             $ext = $file->guessExtension();
             /**@var User */
             $user = $this->getUser();
 
-            if (in_array(strtoupper($ext),$extension)) {
-                $filename = uniqid().'.'.$ext;
-                $file->move('image',$filename);
-                $user->setPhoto('image/'.$filename);
+            if (in_array(strtoupper($ext), $extension)) {
+                $filename = uniqid() . '.' . $ext;
+                $file->move('image', $filename);
+                $user->setPhoto('image/' . $filename);
                 $em = $registry->getManager();
                 $em->persist($user);
                 $em->flush();
-               return $this->json([
-                   'code'=>200,
-                   'message'=>'image update success'
-               ]);
-            }else{
                 return $this->json([
-                    'code'=>401,
-                    'meaasge'=>'file not supported'
+                    'code' => 200,
+                    'message' => 'image update success'
+                ]);
+            } else {
+                return $this->json([
+                    'code' => 401,
+                    'meaasge' => 'file not supported'
                 ]);
             }
             dd($ext);
         }
         return $this->json([
-            'code'=>401,
-            'meaasge'=>'file empty'
+            'code' => 401,
+            'meaasge' => 'file empty'
         ]);
+    }
+
+    #[Route('/send_verify', name: 'user_acount_verify')]
+    public function send_verify(MailerInterface $mailer, ManagerRegistry $registry)
+    {
+        $verify = new ParentEmailVerification();
+        $verify->setCode(uniqid());
+        $verify->setUser($this->getUser());
+        $verify->setExpireAt(new \DateTimeImmutable("+1 hours"));
+        $em = $registry->getManager();
+        $em->persist($verify);
+        $em->flush();
+        $email = (new TemplatedEmail())
+            ->from('no-reply@umoyatech.ca')
+            ->to(new Address($this->getUser()->getEmail()))
+            ->subject('Email verification')
+
+            // path of the Twig template to render
+            ->htmlTemplate('emails/confirm_parent.html.twig')
+
+            // pass variables (name => value) to the template
+            ->context([
+                'data' => $verify,
+            ]);
+
+        try {
+            //code...
+            $mailer->send($email); 
+        } catch (Exception $e) {
+            dd($e->getMessage());
+           return $this->json(['type'=>'error','message'=>"message not sent"]);
+        }
+        return $this->json(['type'=>'success','message'=>"see your mail"]);
+        
     }
 }
