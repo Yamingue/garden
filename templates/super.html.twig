@@ -107,10 +107,10 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'),{_locale:'en'}) }}">English
+                    <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'),{_locale:'en',id:app.request.get('id')}) }}">English
                   </li>
                   <li>
-                    <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'),{_locale:'fr'}) }}">Français</a>
+                    <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'),{_locale:'fr',id:app.request.get('id')}) }}">Français</a>
                   </li>
                 </ul>
               </li>
