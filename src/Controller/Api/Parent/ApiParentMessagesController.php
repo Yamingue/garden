@@ -4,6 +4,7 @@ namespace App\Controller\Api\Parent;
 
 use App\Entity\Enfant;
 use App\Entity\Message;
+use App\Service\FcmNotification;
 use App\Service\SerialiseMessages;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,6 +51,7 @@ class ApiParentMessagesController extends AbstractController
             $message->setEnfant($enfant);
             $message->setUser($this->getUser());
             // dd($message);
+            FcmNotification::sendToTopic($enfant->getNom(),$messageData['message'],'class-'.$enfant->getSalle()->getId());
             $this->manager->persist($message);
             $this->manager->flush();
             # code...

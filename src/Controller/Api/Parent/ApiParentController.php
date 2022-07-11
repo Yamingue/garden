@@ -25,7 +25,7 @@ class ApiParentController extends AbstractController
         $this->notificationRepository = $notif;
     }
     #[Route('/delete_acount')]
-    public function deleteAcount(Type $var = null)
+    public function deleteAcount()
     {
         return $this->json([
             'code'=>200,
