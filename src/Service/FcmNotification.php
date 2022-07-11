@@ -3,14 +3,13 @@
 namespace App\Service;
 
 use Exception;
-use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpClient\HttpClient;
 
 
 class FcmNotification
 {
 
-    static function sendToTopic($title, $body, $topic = [])
+    static function sendToTopic($title, $body, $topic)
     {
         $serverKey = "AAAA19vK4i8:APA91bFZUbxcOSGsNp6SZK0T0ozmD0v7Y9-71O7gTtTgah8ZrMgjEORacWhKIdOX-FJouxpRN8UgTd9GeU0OSAUWf4ToytEvGRPL0aqYMYmneIHgxJIIFWym3gsYqkaBxP3FHO7H4Xwz";
 
