@@ -51,7 +51,7 @@ class ApiParentMessagesController extends AbstractController
             $message->setEnfant($enfant);
             $message->setUser($this->getUser());
             // dd($message);
-            FcmNotification::sendToTopic($enfant->getNom(),$messageData['message'],'class-'.$enfant->getSalle()->getId());
+            FcmNotification::sendToTopic('message: '.$enfant->getNom(),$messageData['message'],'class-'.$enfant->getSalle()->getId());
             $this->manager->persist($message);
             $this->manager->flush();
             # code...

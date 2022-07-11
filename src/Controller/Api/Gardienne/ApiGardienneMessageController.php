@@ -61,7 +61,7 @@ class ApiGardienneMessageController extends AbstractController
             // dd($message);
             $this->manager->persist($message);
             $this->manager->flush();
-            FcmNotification::sendToTopic($enfant->getNom(),$messageData['message'],'parent-'.$user->getId());
+            FcmNotification::sendToTopic('message: '.$enfant->getNom(),$messageData['message'],'parent-'.$user->getId());
             # code...
             return $this->json([
                 'code' => 200,
