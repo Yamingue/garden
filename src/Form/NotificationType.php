@@ -16,8 +16,8 @@ class NotificationType extends AbstractType
             ->add('time',null,[
                 'constraints'=>[
                     new Range([
-                        'min'=>0,
-                        'max'=>60
+                        'min'=>5,
+                        'max'=>120
                     ])
                 ]
             ])

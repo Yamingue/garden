@@ -59,7 +59,7 @@ class ParentController extends AbstractController
             'constraints'=>[
                 new Range([
                     'min'=>0,
-                    'max'=>60
+                    'max'=>120
                 ])
             ]
         ]);
