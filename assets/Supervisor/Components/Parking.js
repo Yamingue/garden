@@ -58,7 +58,7 @@ export default function Parking(props) {
                             <span className="fw-bold"> { dayjs(props.data.updateAt).fromNow()}</span>
                         </div>
                         <div className="">
-                            <span className="message">
+                            <span className="message" style={{cursor: 'pointer'}} onClick={()=>alert('Comming sun')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     className="bi bi-chat-text" viewBox="0 0 16 16">
                                     <path
@@ -79,6 +79,7 @@ export default function Parking(props) {
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         <li><button className="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target={"#modal"+enfant.id}>Current parent info</button></li>
                                         <li><button onClick={notifiReady} className="dropdown-item" type="button">is Ready</button></li>
+                                        <li><button onClick={closeNotif} className="dropdown-item" type="button">Close</button></li>
                                     </ul>
                                 </div>
 

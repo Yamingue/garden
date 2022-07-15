@@ -23,15 +23,15 @@ function OnWayScreen() {
     )
    var timer = null;
 
-    // useEffect(()=>{
-    //     timer = setInterval(()=>{
-    //         refetch()
-    //     },3000)
+    useEffect(()=>{
+        timer = setInterval(()=>{
+            refetch()
+        },5_000)
 
-    //     return ()=>{
-    //         clearInterval(timer)
-    //     }
-    // },[])
+        return ()=>{
+            clearInterval(timer)
+        }
+    },[])
 
     if (isLoading) {
         return <div className="d-flex justify-content-center">
