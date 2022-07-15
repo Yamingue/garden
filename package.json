@@ -25,6 +25,7 @@
         "@material/top-app-bar": "^13.0.0",
         "bootstrap": "5.2.0-beta1",
         "compass-mixins": "^0.12.12",
+        "dayjs": "^1.11.3",
         "firebase": "^9.6.7",
         "mdb-ui-kit": "^3.10.1",
         "prop-types": "^15.7.2",

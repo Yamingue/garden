@@ -32,6 +32,7 @@ class SerializeNotification
                 'nom'=>$parent->getNom(),
                 'prenom'=>$parent->getPrenom(),
                 'email'=>$parent->getEmail(),
+                'photo'=>$parent->getPhoto(),
                 'fcmtoken'=>$parent->getFcmtoken()
             ]
         ];

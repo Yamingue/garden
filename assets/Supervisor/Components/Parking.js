@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import formatHours from "../functions/formateHours";
 
-export default function Onway(props) {
+export default function Parking(props) {
     const [bg, setBg] = useState('')
     let time = Math.floor(props.data.restTime);
     const enfant = props.data.enfant
     const parent = props.data.parent
     var percent = (time * 100) / 120
+    var relativeTime = require('dayjs/plugin/relativeTime')
+    var dayjs = require('dayjs')
+    dayjs.extend(relativeTime)
+    dayjs.locale('fr')
     // if (percent >= 50) {
     //     setBg('bg-success')
     // }
 
-    console.log(parent)
+    //console.log(dayjs(props.data.updateAt).fromNow())
     return <>
         <section className="col-md-3 col-sm-4 mb-2">
 
@@ -25,7 +29,7 @@ export default function Onway(props) {
                                 <path
                                     d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z" />
                             </svg>
-                            <span className="fw-bold"> {formatHours(props.data.restTime)}</span>
+                            <span className="fw-bold"> { dayjs(props.data.updateAt).fromNow()}</span>
                         </div>
                         <div className="">
                             <span className="message">
@@ -48,6 +52,7 @@ export default function Onway(props) {
                                     </svg>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         <li><button className="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target={"#modal"+enfant.id}>Current parent info</button></li>
+                                        <li><button className="dropdown-item" type="button">is Ready</button></li>
                                     </ul>
                                 </div>
 
@@ -62,24 +67,20 @@ export default function Onway(props) {
                         <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
                     </a>
                 </div>
-                <div className="progress" style={{ height: 20 }} >
-                    <div className={`progress-bar ${percent >= 50 ? "bg-success" : percent > 30 ? "bg-primary" : "bg-danger"} progress-bar-striped progress-bar-animated`} role="progressbar"
-                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: percent + '%' }}>{Math.floor(time)} mn</div>
-                </div>
                 <div className="card-footer">
                     <div className="fw-bold"> {enfant.nom + " " + enfant.prenom}</div>
                 </div>
             </div>
 
         </section >
-        <div className="modal fade" id={"modal"+enfant.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={"modal"+enfant.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">{parent.nom+ " "+parent.prenom}</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <img src={"/"+parent.photo} class="img-responsive modal-body" />
+                    <img src={"/"+parent.photo} className="img-responsive modal-body" />
                 </div>
             </div>
         </div>

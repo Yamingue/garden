@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
-import Onway from '../Components/onWay';
 import ReactDOM from 'react-dom'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import Parking from '../Components/Parking';
 
 const queryClient = new QueryClient()
 
-export default function App() {
+export default function AppParking() {
     return (
         <QueryClientProvider client={queryClient}>
-            <OnWayScreen />
+            <ParkingScreen />
         </QueryClientProvider>
     )
 }
 
-function OnWayScreen() {
-    const { isLoading, error, data, refetch } = useQuery('repoData', () =>
-        fetch('/super/api/onway').then(res =>
+function ParkingScreen() {
+    const { isLoading, error, data, refetch } = useQuery('parking', () =>
+        fetch('/super/api/parking').then(res =>
             res.json()
         ),{
-            staleTime:1000
+            staleTime:100
         }
     )
    var timer = null;
@@ -45,13 +45,13 @@ function OnWayScreen() {
 
     return (
         <div className='row'>
-            {data.map(i => <Onway key={i.updateAt} data={i} />)}
+            {data.map(i => <Parking key={i.updateAt} data={i} />)}
         </div>
     )
 }
 
-const domEl = document.getElementById('superWay')
+const domElParking = document.getElementById('superParkingOnly')
 
-if (domEl) {
-    ReactDOM.render(<App />, domEl)
+if (domElParking) {
+    ReactDOM.render(<AppParking />, domElParking)
 }

@@ -16,6 +16,7 @@ import './assets/js/off-canvas'
 import './assets/js/hoverable-collapse'
 import './assets/js/misc'
 import './Supervisor/pages/OnWayScreen'
+import './Supervisor/pages/ParkingScreen'
 
 
 
