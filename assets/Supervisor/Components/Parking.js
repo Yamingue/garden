@@ -14,7 +14,33 @@ export default function Parking(props) {
     // if (percent >= 50) {
     //     setBg('bg-success')
     // }
-
+    const notifiReady = ()=>{
+        const route = '/super/notif/'
+        //console.log(route+data.id)
+       fetch(route+'ready/'+props.data.id).then(res=>res.json()).then(json=>{
+           if (json.code == 200 ) {
+               alert("Notifie")
+           }else{
+               alert("error occure")
+           }
+       }).catch((e)=>{
+        console.log(e)
+        alert("error occure")
+       })
+    }
+    const closeNotif = ()=>{
+        const route = '/super/notif/'
+        fetch(route+'close/'+props.data.id).then(res=>res.json()).then(json=>{
+            if (json.code == 200 ) {
+                alert("Close")
+            }else{
+                alert("error occure")
+            }
+        }).catch((e)=>{
+            alert("error occure")
+        console.log('error',e)
+        })
+    }
     //console.log(dayjs(props.data.updateAt).fromNow())
     return <>
         <section className="col-md-3 col-sm-4 mb-2">
@@ -52,7 +78,7 @@ export default function Parking(props) {
                                     </svg>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         <li><button className="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target={"#modal"+enfant.id}>Current parent info</button></li>
-                                        <li><button className="dropdown-item" type="button">is Ready</button></li>
+                                        <li><button onClick={notifiReady} className="dropdown-item" type="button">is Ready</button></li>
                                     </ul>
                                 </div>
 
