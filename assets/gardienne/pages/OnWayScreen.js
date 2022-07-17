@@ -15,23 +15,23 @@ export default function App() {
 
 function OnWayScreen() {
     const { isLoading, error, data, refetch } = useQuery('repoData', () =>
-        fetch('/super/api/onway').then(res =>
+        fetch('/gardienne/api/onway').then(res =>
             res.json()
-        ),{
-            staleTime:1000
-        }
+        ), {
+        staleTime: 1000
+    }
     )
-   var timer = null;
+    var timer = null;
 
-    useEffect(()=>{
-        timer = setInterval(()=>{
+    useEffect(() => {
+        timer = setInterval(() => {
             refetch()
-        },5_000)
+        }, 5_000)
 
-        return ()=>{
+        return () => {
             clearInterval(timer)
         }
-    },[])
+    }, [])
 
     if (isLoading) {
         return <div className="d-flex justify-content-center">
@@ -44,8 +44,10 @@ function OnWayScreen() {
     if (error) return 'An error has occurred: ' + error.message
 
     return (
-        <div className='row'>
-            {data.map(i => <Onway key={i.updateAt} data={i} />)}
+        <div className='container'>
+            <div className='row'>
+                {data.map(i => <Onway key={i.updateAt} data={i} />)}
+            </div>
         </div>
     )
 }

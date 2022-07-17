@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import formatHours from "../functions/formateHours";
 
 export default function Onway(props) {
@@ -47,7 +48,7 @@ export default function Onway(props) {
                                             d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                     </svg>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <li><button className="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target={"#modal"+enfant.id}>Current parent info</button></li>
+                                        <li><button className="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target={"#modal" + enfant.id}>Current parent info</button></li>
                                     </ul>
                                 </div>
 
@@ -55,16 +56,35 @@ export default function Onway(props) {
                         </div>
                     </div>
                 </div>
-                <div className="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                <div className="bg-image hover-overlay ripple rounded-0 d-flex justify-content-center align-items-center" data-mdb-ripple-color="light">
                     <img className="img-fluid" src={'/' + enfant.photo}
-                        alt="Card image cap" />
+                        alt="Card image cap" 
+                        style={{
+                            zIndex:0,
+                            position:'relative'
+
+                        }}
+                        />
+
+                    <div style={{
+                        position: 'absolute',
+                        zIndex:1
+                    }}>
+                        <CircularProgressbar
+                            maxValue={120}
+                            value={props.data.restTime}
+                            text={formatHours(props.data.restTime)}
+                            background
+                            styles={buildStyles({
+                                backgroundColor: 'rgba(160, 102, 242, 0.4)',
+                                textColor:'#FFF',
+                                pathColor: props.data.restTime > 20?'rgba(160, 102, 242)':'red'
+                            })}
+                        />
+                    </div>
                     <a href="#!">
                         <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
                     </a>
-                </div>
-                <div className="progress" style={{ height: 20 }} >
-                    <div className={`progress-bar ${percent >= 50 ? "bg-success" : percent > 30 ? "bg-primary" : "bg-danger"} progress-bar-striped progress-bar-animated`} role="progressbar"
-                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: percent + '%' }}>{Math.floor(time)} mn</div>
                 </div>
                 <div className="card-footer">
                     <div className="fw-bold"> {enfant.nom + " " + enfant.prenom}</div>
@@ -72,14 +92,14 @@ export default function Onway(props) {
             </div>
 
         </section >
-        <div className="modal fade" id={"modal"+enfant.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id={"modal" + enfant.id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">{parent.nom+ " "+parent.prenom}</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">{parent.nom + " " + parent.prenom}</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <img src={"/"+parent.photo} class="img-responsive modal-body" />
+                    <img src={"/" + parent.photo} class="img-responsive modal-body" />
                 </div>
             </div>
         </div>

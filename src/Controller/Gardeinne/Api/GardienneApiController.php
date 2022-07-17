@@ -26,6 +26,7 @@ class GardienneApiController extends AbstractController
         /**@var Gardienne */
         $gardienne = $this->getUser();
         $salle = $gardienne->getSalles();
+        //dd($salle,$this->notificationRepository->findSalleOnWay($salle));
 
         return $this->json(SerializeNotification::collectionToArray($this->notificationRepository->findSalleOnWay($salle)));
     }
