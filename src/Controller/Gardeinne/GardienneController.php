@@ -30,4 +30,13 @@ class GardienneController extends AbstractController
             'controller_name' => 'GardienneController',
         ]);
     }
+     /**
+     * @Route("/way", name="gardienne_way")
+     */
+    public function way(): Response
+    {
+        return $this->render('gardienne/way.html.twig', [
+            'controller_name' => 'GardienneController',
+        ]);
+    }
 }
