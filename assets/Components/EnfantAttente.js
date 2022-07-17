@@ -42,7 +42,7 @@ const EnfantAttente = ({ data, route = '/super/notif/' }) => {
             method: 'POST'
         }).then(dta => dta.json).then(json => {
             console.log(json)
-        }).catch(e=>console.log(e))
+        }).catch(e => console.log(e))
         //console.log(route+data.id)
         // getMessaging(firebaseApp).send({
         //     data:{

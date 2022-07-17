@@ -16,19 +16,25 @@
         <li class="menu-item {% if app.request.get('_route') == 'gardienne' %}active{% endif %}">
             <a href="{{ path('gardienne') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">{% trans %}Dashboard{% endtrans %}</div>
             </a>
         </li>
         <li class="menu-item {% if app.request.get('_route') == 'gardienne_way' %}active{% endif %}">
             <a href="{{ path('gardienne_way') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-car"></i>
-                <div data-i18n="Analytics">On way</div>
+                <div data-i18n="Analytics">{% trans %}On way{% endtrans %}</div>
             </a>
         </li>
         <li class="menu-item {% if app.request.get('_route') == 'gardienne_parking' %}active{% endif %}">
             <a href="{{ path('gardienne_parking') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-map"></i>
-                <div data-i18n="Analytics">Parking</div>
+                <div data-i18n="Analytics">{% trans %}Parking{% endtrans %}</div>
+            </a>
+        </li>
+        <li class="menu-item {% if app.request.get('_route') == 'gardienne_parking' %}active{% endif %}">
+            <a href="{{ path('gardienne_parking') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-map"></i>
+                <div data-i18n="Analytics">{% trans %}Setting{% endtrans %}</div>
             </a>
         </li>
         {# <li class="menu-header small text-uppercase">

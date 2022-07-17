@@ -15,11 +15,11 @@ export default function Parking(props) {
     //     setBg('bg-success')
     // }
     const notifiReady = ()=>{
-        const route = '/super/notif/'
+        const route = '/gardienne/api/'
         //console.log(route+data.id)
        fetch(route+'ready/'+props.data.id).then(res=>res.json()).then(json=>{
            if (json.code == 200 ) {
-               alert("Notifie")
+               alert(json.message)
            }else{
                alert("error occure")
            }
@@ -29,7 +29,7 @@ export default function Parking(props) {
        })
     }
     const closeNotif = ()=>{
-        const route = '/super/notif/'
+        const route = '/gardienne/api/'
         fetch(route+'close/'+props.data.id).then(res=>res.json()).then(json=>{
             if (json.code == 200 ) {
                 alert("Close")

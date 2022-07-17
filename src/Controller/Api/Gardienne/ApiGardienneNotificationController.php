@@ -83,6 +83,7 @@ class ApiGardienneNotificationController extends AbstractController
             $notification->setClose(true);
             $em->persist($notification);
             $em->flush();
+            FcmNotification::sendToTopic('Enfant recuperer',$notification->getEnfant()->getPrenom().' a bien été recuperer. merci pour la confiance','parent-'.$notification->getParent()->getId());
             return $this->json([
                 'code' => 200,
                 'message' => 'Notification close'
