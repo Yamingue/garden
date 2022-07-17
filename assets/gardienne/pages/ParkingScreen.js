@@ -47,6 +47,9 @@ function ParkingScreen() {
 
     return (
         <div className='container'>
+             <div className='btn btn-block btn-primary mb-2 d-flex justify-content-center align-items-center'>
+                On way
+            </div>
             <div className='row'>
                 {data.map(i => <Parking key={i.updateAt} data={i} />)}
             </div>
